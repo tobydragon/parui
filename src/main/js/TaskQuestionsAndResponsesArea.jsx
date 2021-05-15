@@ -11,9 +11,10 @@ import QuestionAndResponseArea from "./QuestionAndResponseArea"
 export const TaskQuestionsAndResponsesArea = (props) => {
     return (
         <div>
+            <p data-testid="questionCount">{props.currentQuestionIndex+1}/{props.questionModels.length}</p>
             <QuestionAndResponseArea currentAnswer={props.currentAnswers[props.currentQuestionIndex]} questionModel={props.questionModels[props.currentQuestionIndex]} />
         </div>
     );
-}
+};
 
 export default TaskQuestionsAndResponsesArea;
