@@ -15,8 +15,7 @@ test('calcResponseState', () => {
 const stubFunction = ()=> { };
 
 test('DropdownResponseAreaNoResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: ResponseState.NOTHING_SELECTED.text,
+    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer={ResponseState.NOTHING_SELECTED.text} questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -25,8 +24,7 @@ test('DropdownResponseAreaNoResponse', () => {
 });
 
 test('DropdownResponseAreaCorrecctResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: "b",
+    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer="b" questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -35,8 +33,7 @@ test('DropdownResponseAreaCorrecctResponse', () => {
 });
 
 test('DropdownResponseAreaIncorrectResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: "d",
+    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer="d" questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -45,8 +42,7 @@ test('DropdownResponseAreaIncorrectResponse', () => {
 });
 
 test('DropdownResponseAreaDontKnowResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: ResponseState.DONT_KNOW.text,
+    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer={ResponseState.DONT_KNOW.text} questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);

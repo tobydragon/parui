@@ -4,23 +4,19 @@ export const DropdownResponseAreaDemo = (props) => {
     const logAction = (newResponseText) => {console.log("New Response entered:"+newResponseText)};
     return (
         <div>
-            <DropdownResponseArea handleAnswerChange={logAction} questionModel={{
-                currentAnswer: ResponseState.NOTHING_SELECTED.text,
+            <DropdownResponseArea handleAnswerChange={logAction} currentAnswer={ResponseState.NOTHING_SELECTED.text} questionModel={{
                 correctAnswer: "b",
                 possibleAnswers: ["a", "b", "c", "d"]
             }} />
-            <DropdownResponseArea handleAnswerChange={logAction} questionModel={{
-                currentAnswer: "b",
+            <DropdownResponseArea handleAnswerChange={logAction} currentAnswer="b" questionModel={{
                 correctAnswer: "b",
                 possibleAnswers: ["a", "b", "c", "d"]
             }} />
-            <DropdownResponseArea handleAnswerChange={logAction} questionModel={{
-                currentAnswer: "a",
+            <DropdownResponseArea handleAnswerChange={logAction} currentAnswer="a" questionModel={{
                 correctAnswer: "b",
                 possibleAnswers: ["a", "b", "c", "d"]
             }} />
-            <DropdownResponseArea handleAnswerChange={logAction} questionModel={{
-                currentAnswer: ResponseState.DONT_KNOW.text,
+            <DropdownResponseArea handleAnswerChange={logAction} currentAnswer={ResponseState.DONT_KNOW.text} questionModel={{
                 correctAnswer: "b",
                 possibleAnswers: ["a", "b", "c", "d"]
             }} />

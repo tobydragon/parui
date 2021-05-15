@@ -12,7 +12,7 @@ export const QuestionAndResponseArea = (props) => {
     return (
         <div>
             <p>{props.questionModel.questionText}</p>
-            <DropdownResponseArea handleAnswerChange={props.handleAnswerChange} questionModel={props.questionModel} />
+            <DropdownResponseArea handleAnswerChange={props.handleAnswerChange} currentAnswer={props.currentAnswer} questionModel={props.questionModel} />
         </div>
     );
 }

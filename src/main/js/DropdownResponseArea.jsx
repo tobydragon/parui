@@ -45,7 +45,7 @@ export const calcResponseState = (currentAnswer, correctAnswer) => {
 
 /**
  * @prop {function} handleAnswerChange: function called when a response is selected, takes new string response as a param 
- * @prop {string} questionModel.currentAnswer
+ * @prop {string} currentAnswer
  * @prop {string} questionModel.correctAnswer
  * @prop {list of strings} questionModel.possibleAnswers  
  */
@@ -56,13 +56,13 @@ export const DropdownResponseArea = (props) => {
     }
 
     const optionComponents = props.questionModel.possibleAnswers.map(possAnswerStr => (<option key={possAnswerStr}>{possAnswerStr}</option>));
-    const responseState = calcResponseState(props.questionModel.currentAnswer, props.questionModel.correctAnswer);
+    const responseState = calcResponseState(props.currentAnswer, props.questionModel.correctAnswer);
 
     return (
         <div>
             {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
             <responseState.iconComponent className={responseState.cssClass} data-testid="feedbackIcon"/>
-            <select className="dropdown" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.questionModel.currentAnswer}>
+            <select className="dropdown" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.currentAnswer}>
                 <option disabled>{ResponseState.NOTHING_SELECTED.text}</option>
                 {optionComponents}
                 <option>{ResponseState.DONT_KNOW.text}</option>
