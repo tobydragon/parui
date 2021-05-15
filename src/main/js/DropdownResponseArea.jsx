@@ -1,7 +1,7 @@
 import './DropdownResponseArea.css'
 import {BiCheckCircle, BiXCircle, BiQuestionMark} from "react-icons/bi"
 
-export const ResponseStateAndIcon = {
+export const ResponseState = {
     CORRECT: {
         id: "CORRECT",
         cssClass: "correctFeedback",
@@ -29,17 +29,17 @@ export const ResponseStateAndIcon = {
 export const calcResponseState = (currentAnswer, correctAnswer) => {
     currentAnswer = currentAnswer.trim();
     correctAnswer = correctAnswer.trim();
-    if (currentAnswer === ResponseStateAndIcon.NOTHING_SELECTED.text){
-        return ResponseStateAndIcon.NOTHING_SELECTED;
+    if (currentAnswer === ResponseState.NOTHING_SELECTED.text){
+        return ResponseState.NOTHING_SELECTED;
     }
-    else if (currentAnswer === ResponseStateAndIcon.DONT_KNOW.text){
-        return ResponseStateAndIcon.DONT_KNOW;
+    else if (currentAnswer === ResponseState.DONT_KNOW.text){
+        return ResponseState.DONT_KNOW;
     }
     else if (currentAnswer === correctAnswer){
-        return ResponseStateAndIcon.CORRECT;
+        return ResponseState.CORRECT;
     }
     else {
-        return ResponseStateAndIcon.INCORRECT;
+        return ResponseState.INCORRECT;
     }
 }
 
@@ -62,10 +62,10 @@ export const DropdownResponseArea = (props) => {
         <div>
             {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
             <responseState.iconComponent className={responseState.cssClass} data-testid="feedbackIcon"/>
-            <select className="dropdown" onChange={onResponseChange} disabled={responseState.id === ResponseStateAndIcon.CORRECT.id} value={props.questionModel.currentAnswer}>
-                <option disabled>{ResponseStateAndIcon.NOTHING_SELECTED.text}</option>
+            <select className="dropdown" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.questionModel.currentAnswer}>
+                <option disabled>{ResponseState.NOTHING_SELECTED.text}</option>
                 {optionComponents}
-                <option>{ResponseStateAndIcon.DONT_KNOW.text}</option>
+                <option>{ResponseState.DONT_KNOW.text}</option>
             </select>
         </div>
     );

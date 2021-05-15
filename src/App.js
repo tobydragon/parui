@@ -1,9 +1,9 @@
-import './App.css';
-import { DropdownResponseAreaDemo } from './test/js/DropdpwnResponseArea.demo';
+import { DropdownResponseAreaDemo } from './test/js/DropdownResponseArea.demo';
+import { QuestionAndResponseAreaDemo } from './test/js/QuestionAndResponseArea.demo';
 
 function App() {
   return (
-    <DropdownResponseAreaDemo />
+    <QuestionAndResponseAreaDemo />
   );
 }
 

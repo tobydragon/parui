@@ -1,28 +1,27 @@
-import DropdownResponseArea, { calcResponseState, ResponseStateAndIcon } from "../../main/js/DropdownResponseArea";
-import { render, screen } from '@testing-library/react'
+import DropdownResponseArea, { calcResponseState, ResponseState } from "../../main/js/DropdownResponseArea";
+import { render, screen } from '@testing-library/react';
 
 
 test('calcResponseState', () => {
-    expect(calcResponseState("x y z ", "x y z ")).toBe(ResponseStateAndIcon.CORRECT);
+    expect(calcResponseState("x y z ", "x y z ")).toBe(ResponseState.CORRECT);
     //white space is trimmed from both current and correct
-    expect(calcResponseState("x y", "x y z \t")).toBe(ResponseStateAndIcon.INCORRECT);
+    expect(calcResponseState("x y", "x y z \t")).toBe(ResponseState.INCORRECT);
 
-    expect(calcResponseState("x y ", "x y z ")).toBe(ResponseStateAndIcon.INCORRECT);
-    expect(calcResponseState(ResponseStateAndIcon.NOTHING_SELECTED.text, "x y z ")).toBe(ResponseStateAndIcon.NOTHING_SELECTED); 
-    expect(calcResponseState(ResponseStateAndIcon.DONT_KNOW.text, "x y z ")).toBe(ResponseStateAndIcon.DONT_KNOW);
+    expect(calcResponseState("x y ", "x y z ")).toBe(ResponseState.INCORRECT);
+    expect(calcResponseState(ResponseState.NOTHING_SELECTED.text, "x y z ")).toBe(ResponseState.NOTHING_SELECTED); 
+    expect(calcResponseState(ResponseState.DONT_KNOW.text, "x y z ")).toBe(ResponseState.DONT_KNOW);
 });
 
 const stubFunction = ()=> { };
 
 test('DropdownResponseAreaNoResponse', () => {
     render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: ResponseStateAndIcon.NOTHING_SELECTED.text,
+        currentAnswer: ResponseState.NOTHING_SELECTED.text,
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    screen.debug();
     const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseStateAndIcon.NOTHING_SELECTED.cssClass);
+    expect(iconElement).toHaveAttribute("class", ResponseState.NOTHING_SELECTED.cssClass);
 });
 
 test('DropdownResponseAreaCorrecctResponse', () => {
@@ -31,9 +30,8 @@ test('DropdownResponseAreaCorrecctResponse', () => {
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    screen.debug();
     const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseStateAndIcon.CORRECT.cssClass);
+    expect(iconElement).toHaveAttribute("class", ResponseState.CORRECT.cssClass);
 });
 
 test('DropdownResponseAreaIncorrectResponse', () => {
@@ -42,18 +40,16 @@ test('DropdownResponseAreaIncorrectResponse', () => {
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    screen.debug();
     const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseStateAndIcon.INCORRECT.cssClass);
+    expect(iconElement).toHaveAttribute("class", ResponseState.INCORRECT.cssClass);
 });
 
 test('DropdownResponseAreaDontKnowResponse', () => {
     render(<DropdownResponseArea handleAnswerChange={stubFunction} questionModel={{
-        currentAnswer: ResponseStateAndIcon.DONT_KNOW.text,
+        currentAnswer: ResponseState.DONT_KNOW.text,
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    screen.debug();
     const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseStateAndIcon.DONT_KNOW.cssClass);
+    expect(iconElement).toHaveAttribute("class", ResponseState.DONT_KNOW.cssClass);
 }); 
