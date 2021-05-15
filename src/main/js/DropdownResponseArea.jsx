@@ -1,21 +1,26 @@
+import './DropdownResponseArea.css'
 import {BiCheckCircle, BiXCircle, BiQuestionMark} from "react-icons/bi"
 
 export const ResponseStateAndIcon = {
     CORRECT: {
         id: "CORRECT",
+        cssClass: "correctFeedback",
         iconComponent: BiCheckCircle
     },
     INCORRECT: {
         id:"INCORRECT",
+        cssClass: "incorrectFeedback",
         iconComponent: BiXCircle
     },
     NOTHING_SELECTED: {
         id: "NOTHING_SELECTED",
+        cssClass: "noFeedback",
         iconComponent: BiQuestionMark,
         text: "---Select Answer---"
     },
     DONT_KNOW: {
         id: "DONT_KNOW",
+        cssClass: "noFeedback",
         iconComponent: BiQuestionMark,
         text: "... I don't know"
     }
@@ -51,13 +56,14 @@ export const DropdownResponseArea = (props) => {
     }
 
     const optionComponents = props.questionModel.possibleAnswers.map(possAnswerStr => (<option key={possAnswerStr}>{possAnswerStr}</option>));
-    const responseState = calcResponseState(props.questionModel.currentAnswer, props.questionModel.correctAnswer)
-    console.log(responseState);
+    const responseState = calcResponseState(props.questionModel.currentAnswer, props.questionModel.correctAnswer);
+
     return (
         <div>
-            {responseState.iconComponent()}
+            {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
+            <responseState.iconComponent className={responseState.cssClass} data-testid="feedbackIcon"/>
             <select className="dropdown" onChange={onResponseChange} disabled={responseState.id === ResponseStateAndIcon.CORRECT.id} value={props.questionModel.currentAnswer}>
-                <option>{ResponseStateAndIcon.NOTHING_SELECTED.text}</option>
+                <option disabled>{ResponseStateAndIcon.NOTHING_SELECTED.text}</option>
                 {optionComponents}
                 <option>{ResponseStateAndIcon.DONT_KNOW.text}</option>
             </select>
