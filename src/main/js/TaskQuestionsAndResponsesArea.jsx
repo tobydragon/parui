@@ -1,4 +1,4 @@
-
+import QuestionAndResponseArea from "./QuestionAndResponseArea"
 
 /**
  * @prop {function} prevQuestion: 
@@ -11,7 +11,7 @@
 export const TaskQuestionsAndResponsesArea = (props) => {
     return (
         <div>
-            not implemented
+            <QuestionAndResponseArea currentAnswer={props.currentAnswers[props.currentQuestionIndex]} questionModel={props.questionModels[props.currentQuestionIndex]} />
         </div>
     );
 }
