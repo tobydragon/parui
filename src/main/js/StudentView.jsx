@@ -3,6 +3,7 @@ import ImageTask from "./ImageTask"
 import {getFromServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
 import { ResponseState } from "./DropdownResponseArea";
+import { diffNewArray } from "./Util";
 
 /**
  * @prop {string} userId 
@@ -19,13 +20,26 @@ export const StudentView = (props) => {
 
     useEffect(() => {
         getFromServer(props.apiUrl, "/getImageTask?userId="+props.userId)
-            .then((newModelFromServer)=> setTaskModel(newModelFromServer));
-    });
+            .then((newModelFromServer)=> {
+                const newAnswerList = newModelFromServer.taskQuestions.map(()=>ResponseState.NOTHING_SELECTED.text);
+                setCurrentAnswers(newAnswerList);
+                setTaskModel(newModelFromServer);
+            });
+        },
+        [props.apiUrl, props.userId]
+    );
 
     const handleAnswerSelected = (curQuestionIndex, selectedAnswer) => {
-        //set answer list
-        //report to server
+        console.log("StudentView old answers");
+        console.log(currentAnswers);
+        console.log("StudentView index and selected answer");
+        console.log("" + curQuestionIndex + selectedAnswer);
+        const newAnswers = diffNewArray(currentAnswers, curQuestionIndex, selectedAnswer);
+        console.log("StudentView");
+        console.log(newAnswers);
+        setCurrentAnswers(newAnswers);
     };
+
     const prevQuestion = () => {
         if (currentQuestionIndex > 0){
             setCurrentQuestionIndex((currentQuestionIndex)=>currentQuestionIndex-1);

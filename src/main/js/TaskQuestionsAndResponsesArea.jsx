@@ -3,15 +3,19 @@ import QuestionAndResponseArea from "./QuestionAndResponseArea"
 /**
  * @prop {function} controlFunctions.prevQuestion
  * @prop {function} controlFunctions.nextQuestion
- * @prop {function} controlFunctions.handleAnswerChange: function called when a response is selected, takes new string response as a param 
+ * @prop {function} controlFunctions.handleAnswerSelected
  * @prop {list of QuestionModel objects} questionModels
  * @prop {list of strings} currentAnswers
  * @prop {int} currentQuestionIndex: the index of the question model to display   
  */
 export const TaskQuestionsAndResponsesArea = (props) => {
-    console.log(props.controlFunctions);
+    console.log(props.currentAnswers);
     const prevDisabled = props.currentQuestionIndex <= 0;
     const nextDisabled = props.currentQuestionIndex >= props.questionModels.length-1;
+
+    const handleAnswerSelected = (newAnswerSelected) => {
+        props.controlFunctions.handleAnswerSelected(props.currentQuestionIndex, newAnswerSelected);
+    }
 
     return (
         <div>
@@ -19,7 +23,7 @@ export const TaskQuestionsAndResponsesArea = (props) => {
             <QuestionAndResponseArea 
                 currentAnswer={props.currentAnswers[props.currentQuestionIndex]} 
                 questionModel={props.questionModels[props.currentQuestionIndex]}
-                handleAnswerChange={props.controlFunctions.handleAnswerSelected} 
+                handleAnswerChange={handleAnswerSelected} 
             />
             <button onClick={props.controlFunctions.prevQuestion} disabled={prevDisabled}>Previous Question</button>
             <button onClick={props.controlFunctions.nextQuestion} disabled={nextDisabled}>Next Question</button>
