@@ -18,7 +18,7 @@ export const StudentView = (props) => {
     console.log(taskModel);
 
     useEffect(() => {
-        getFromServer(props.apiUrl, "nextImageTask?userId="+props.userId)
+        getFromServer(props.apiUrl, "/getImageTask?userId="+props.userId)
             .then((newModelFromServer)=> setTaskModel(newModelFromServer));
     });
 
