@@ -9,4 +9,21 @@ export function getFromServer(apiUrl, callUrl){
                 throw new Error("Comm.getFromServer: response not ok, status:"+ response.status);
             }
         });
-}
+};
+
+export function postToServer(apiUrl, callUrl, bodyObject){
+    return fetch
+        (apiUrl+callUrl, {
+            method: "POST",
+            body: JSON.stringify(bodyObject),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }) 
+       .then(response => {
+           console.log(response);
+           if (response.ok) {
+               return response.json();
+           } else {
+               throw new Error("Comm.getFromServer: response not ok, status:"+ response.status);
+           }
+       });
+};

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ImageTask from "./ImageTask"
-import {getFromServer} from "./Comm"
+import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
 import { ResponseState } from "./DropdownResponseArea";
 import { diffNewArray } from "./Util";
@@ -16,18 +16,21 @@ export const StudentView = (props) => {
     const [taskModel, setTaskModel] = useState(SampleImageTaskList.imageTasks[0]);
     const [currentAnswers, setCurrentAnswers] = useState(sampleAnswersList);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    console.log(taskModel);
 
-    useEffect(() => {
+    const getNewImageTask = () => {
         getFromServer(props.apiUrl, "/getImageTask?userId="+props.userId)
-            .then((newModelFromServer)=> {
-                const newAnswerList = newModelFromServer.taskQuestions.map(()=>ResponseState.NOTHING_SELECTED.text);
-                setCurrentAnswers(newAnswerList);
-                setTaskModel(newModelFromServer);
-            });
-        },
-        [props.apiUrl, props.userId]
-    );
+        .then((newModelFromServer)=> {
+            setCurrentQuestionIndex(0);
+            const newAnswerList = newModelFromServer.taskQuestions.map(()=>ResponseState.NOTHING_SELECTED.text);
+            setCurrentAnswers(newAnswerList);
+            setTaskModel(newModelFromServer);
+            const questionSeenJson = {userId: props.userId, questionId: newModelFromServer.taskQuestions[0].id};
+            postToServer(props.apiUrl, "/updateTimesAttempted", questionSeenJson);
+        });
+    };
+
+    useEffect(getNewImageTask, [props.apiUrl, props.userId]);
+
 
     const handleAnswerSelected = (curQuestionIndex, selectedAnswer) => {
         console.log("StudentView old answers");
@@ -42,7 +45,10 @@ export const StudentView = (props) => {
 
     const prevQuestion = () => {
         if (currentQuestionIndex > 0){
-            setCurrentQuestionIndex((currentQuestionIndex)=>currentQuestionIndex-1);
+            const newQuestionIndex = currentQuestionIndex-1;
+            setCurrentQuestionIndex(newQuestionIndex);
+            const questionSeenJson = {userId: props.userId, questionId: taskModel.taskQuestions[newQuestionIndex].id};
+            postToServer(props.apiUrl, "/updateTimesAttempted", questionSeenJson);
         }
         else {
             throw new Error("can't go to previous when at 0");
@@ -50,7 +56,10 @@ export const StudentView = (props) => {
     };
     const nextQuestion = () => {
         if (currentQuestionIndex < taskModel.taskQuestions.length-1){
-            setCurrentQuestionIndex((currentQuestionIndex)=>currentQuestionIndex+1);
+            const newQuestionIndex = currentQuestionIndex+1;
+            setCurrentQuestionIndex(newQuestionIndex);
+            const questionSeenJson = {userId: props.userId, questionId: taskModel.taskQuestions[newQuestionIndex].id};
+            postToServer(props.apiUrl, "/updateTimesAttempted", questionSeenJson);
         }
         else {
             throw new Error("can't go to next when at end: " + currentQuestionIndex);
@@ -64,12 +73,14 @@ export const StudentView = (props) => {
 
     return(
         <div>
+            <p>username: {props.userId} </p>
             <ImageTask 
                 controlFunctions={controlFunctions}
                 model={taskModel}
                 currentAnswers={currentAnswers}
                 currentQuestionIndex={currentQuestionIndex}
             />
+            <button onClick={getNewImageTask}> Next Image Task </button>
         </div>
     );
 };
