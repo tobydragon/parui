@@ -1,3 +1,5 @@
+import "./App.css";
+
 import StudentViewSingleQuestionDemo from './test/js/StudentViewSingleImage.demo'
 import { DropdownResponseAreaDemo } from './test/js/DropdownResponseArea.demo';
 import { ImageAreaDemo } from './test/js/ImageAreaDemo';

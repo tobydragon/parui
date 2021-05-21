@@ -1,3 +1,4 @@
+import "./StudentViewSingleQuestion.css"
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
@@ -42,10 +43,10 @@ export const StudentViewSingleQuestion = (props) => {
             />
             <Container>
                 <Row>
-                    <Col sm={8}>
+                    <Col sm={7}>
                     </Col>
                     <Col>
-                        <Button onClick={getCurrentQuestion}> Next Question </Button>
+                        <Button variant="dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
                     </Col>
                 </Row>
             </Container>
