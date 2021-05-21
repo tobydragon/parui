@@ -32,14 +32,14 @@ export const SampleImageTaskList = {
       },
       {
         "id": 2,
-        "imageUrl" : "https://github.com/tobydragon/PAR/raw/master/src/main/resources/static/images/metacarpal15.jpg",
+        "imageUrl" : "https://raw.githubusercontent.com/tobydragon/PAR/71f9fee86fc46d30527e52110826f7526ee46d6f/src/main/resources/static/images/metacarpal15.jpg",
         "taskQuestions" : [ {
           "id" : "PlaneQ1",
           "type" : "plane",
           "questionText" : "On which plane is the ultrasound taken?",
           "correctAnswer" : "Transverse",
           "possibleAnswers" : [ "Transverse", "Lateral" ],
-          "imageUrl" : "https://github.com/tobydragon/PAR/raw/master/src/main/resources/static/images/metacarpal15.jpg",
+          "imageUrl" : "https://raw.githubusercontent.com/tobydragon/PAR/71f9fee86fc46d30527e52110826f7526ee46d6f/src/main/resources/static/images/metacarpal15.jpg",
           "followupQuestions" : [ ]
 
         }, {
@@ -48,7 +48,7 @@ export const SampleImageTaskList = {
           "questionText" : "What structure is in the near field?",
           "correctAnswer" : "ligament",
           "possibleAnswers" : [ "bone", "ligament", "tumor", "tendon" ],
-          "imageUrl" : "https://github.com/tobydragon/PAR/raw/master/src/main/resources/static/images/metacarpal15.jpg",
+          "imageUrl" : "https://raw.githubusercontent.com/tobydragon/PAR/71f9fee86fc46d30527e52110826f7526ee46d6f/src/main/resources/static/images/metacarpal15.jpg",
           "followupQuestions" : [ ]
 
         }]

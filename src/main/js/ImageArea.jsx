@@ -1,3 +1,5 @@
+import "./ImageArea.css"
+
 export const ImageArea = (props) => {
     return (
         <div>

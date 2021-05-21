@@ -5,6 +5,7 @@ import ImageTaskDemo from './test/js/ImageTask.demo';
 import { QuestionAndResponseAreaDemo } from './test/js/QuestionAndResponseArea.demo';
 import StudentViewDemo from './test/js/StudentView.demo';
 import { TaskQuestionsAndResponsesAreaDemo } from './test/js/TaskQuestionsAndResponsesArea.demo';
+import QuestionWithImageDemo from './test/js/QuestionWithImage.demo';
 
 function App() {
   return (
