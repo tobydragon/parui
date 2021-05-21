@@ -3,6 +3,7 @@ import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
 import { ResponseState } from "./DropdownResponseArea";
 import QuestionWithImage from "./QuestionWithImage";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 /**
  * @prop {string} userId 
@@ -39,7 +40,16 @@ export const StudentViewSingleQuestion = (props) => {
                 currentAnswer={currentAnswer}
                 handleAnswerSelected={handleAnswerSelected}
             />
-            <button onClick={getCurrentQuestion}> Next Question </button>
+            <Container>
+                <Row>
+                    <Col sm={8}>
+                    </Col>
+                    <Col>
+                        <Button onClick={getCurrentQuestion}> Next Question </Button>
+                    </Col>
+                </Row>
+            </Container>
+            
         </div>
     );
 };

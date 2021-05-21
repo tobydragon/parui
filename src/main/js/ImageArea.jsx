@@ -2,9 +2,9 @@ import "./ImageArea.css"
 
 export const ImageArea = (props) => {
     return (
-        <div>
-            <p>{props.questionId}</p>
+        <div className="imageArea">
             <img src={props.imageUrl} alt={props.altText} />
+            <p>{props.questionId}</p>
         </div>
         
     );
