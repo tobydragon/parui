@@ -1,3 +1,4 @@
+import StudentViewSingleQuestionDemo from './test/js/StudentViewSingleImage.demo'
 import { DropdownResponseAreaDemo } from './test/js/DropdownResponseArea.demo';
 import { ImageAreaDemo } from './test/js/ImageAreaDemo';
 import ImageTaskDemo from './test/js/ImageTask.demo';
@@ -7,7 +8,7 @@ import { TaskQuestionsAndResponsesAreaDemo } from './test/js/TaskQuestionsAndRes
 
 function App() {
   return (
-    <StudentViewDemo />
+    <StudentViewSingleQuestionDemo />
   );
 }
 
