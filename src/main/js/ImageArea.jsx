@@ -1,6 +1,10 @@
 export const ImageArea = (props) => {
     return (
-        <img src={props.imageUrl} alt={props.altText} />
+        <div>
+            <p>{props.questionId}</p>
+            <img src={props.imageUrl} alt={props.altText} />
+        </div>
+        
     );
 };
 
