@@ -1,6 +1,6 @@
 import { ResponseState } from "../../main/js/DropdownResponseArea";
 import ImageTask from "../../main/js/ImageTask";
-import sampleImageTaskList from "../resources/SampleImageTasks";
+import sampleImageTaskList from "../../resources/SampleImageTasks";
 
 
 export const ImageTaskDemo = () => {

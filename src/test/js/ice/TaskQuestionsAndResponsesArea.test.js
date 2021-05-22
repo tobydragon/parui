@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { ResponseState } from "../../main/js/DropdownResponseArea";
-import TaskQuestionsAndResponsesArea from "../../main/js/TaskQuestionsAndResponsesArea";
-import SampleImageTaskList from "../resources/sampleImageTasks";
+import { ResponseState } from "../../../main/js/ResponseAreaDropdown";
+import TaskQuestionsAndResponsesArea from "../../../main/js/ice/TaskQuestionsAndResponsesArea";
+import SampleImageTaskList from "../../resources/sampleImageTasks";
 
 //TODO: remove buttons when there is only 1 question
 //TODO: decide about how it should handle bad indices, empty lists, or different size lists

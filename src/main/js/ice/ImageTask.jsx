@@ -1,4 +1,4 @@
-import ImageArea from "./ImageArea"
+import ImageArea from "../ImageArea"
 import TaskQuestionsAndResponsesArea from "./TaskQuestionsAndResponsesArea"
 
 /**

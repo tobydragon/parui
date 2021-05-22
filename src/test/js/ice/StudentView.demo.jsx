@@ -1,4 +1,4 @@
-import StudentView from "../../main/js/StudentView";
+import StudentView from "../../../main/js/ice/StudentView";
 
 export const StudentViewDemo = () => {
     return (

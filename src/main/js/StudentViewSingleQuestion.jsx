@@ -1,8 +1,11 @@
+import "./StudentViewSingleQuestion.css"
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
-import { ResponseState } from "./DropdownResponseArea";
+import { ResponseState } from "./ResponseAreaDropdown";
 import QuestionWithImage from "./QuestionWithImage";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import StudentHeader from "./StudentHeader";
 
 /**
  * @prop {string} userId 
@@ -32,15 +35,24 @@ export const StudentViewSingleQuestion = (props) => {
     };
 
     return(
-        <div>
-            <p>username: {props.userId} </p>
+        <Container className="studentViewSingleQuestion">
+            <StudentHeader userId={props.userId} />
             <QuestionWithImage
                 questionModel={questionModel}
                 currentAnswer={currentAnswer}
                 handleAnswerSelected={handleAnswerSelected}
             />
-            <button onClick={getCurrentQuestion}> Next Question </button>
-        </div>
+            <Container>
+                <Row>
+                    <Col sm={7}>
+                    </Col>
+                    <Col>
+                        <Button variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
+                    </Col>
+                </Row>
+            </Container>
+            
+        </Container>
     );
 };
 

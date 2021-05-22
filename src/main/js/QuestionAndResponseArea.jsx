@@ -1,4 +1,5 @@
-import DropdownResponseArea from "./DropdownResponseArea"
+import "./QuestionAndResponseArea.css"
+import ResponseAreaDropdown from "./ResponseAreaDropdown"
 
 
 /**
@@ -10,9 +11,9 @@ import DropdownResponseArea from "./DropdownResponseArea"
  */
 export const QuestionAndResponseArea = (props) => {
     return (
-        <div>
+        <div className="questionArea">
             <p>{props.questionModel.questionText}</p>
-            <DropdownResponseArea handleAnswerChange={props.handleAnswerChange} currentAnswer={props.currentAnswer} questionModel={props.questionModel} />
+            <ResponseAreaDropdown handleAnswerChange={props.handleAnswerChange} currentAnswer={props.currentAnswer} questionModel={props.questionModel} />
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import QuestionAndResponseArea from "./QuestionAndResponseArea"
+import QuestionAndResponseArea from "../QuestionAndResponseArea"
 
 /**
  * @prop {function} controlFunctions.prevQuestion
@@ -9,7 +9,6 @@ import QuestionAndResponseArea from "./QuestionAndResponseArea"
  * @prop {int} currentQuestionIndex: the index of the question model to display   
  */
 export const TaskQuestionsAndResponsesArea = (props) => {
-    console.log(props.currentAnswers);
     const prevDisabled = props.currentQuestionIndex <= 0;
     const nextDisabled = props.currentQuestionIndex >= props.questionModels.length-1;
 
