@@ -34,7 +34,7 @@ export const StudentViewSingleQuestion = (props) => {
     };
 
     return(
-        <div>
+        <Container className="studentViewSingleQuestion">
             <p>username: {props.userId} </p>
             <QuestionWithImage
                 questionModel={questionModel}
@@ -46,12 +46,12 @@ export const StudentViewSingleQuestion = (props) => {
                     <Col sm={7}>
                     </Col>
                     <Col>
-                        <Button variant="dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
+                        <Button variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
                     </Col>
                 </Row>
             </Container>
             
-        </div>
+        </Container>
     );
 };
 
