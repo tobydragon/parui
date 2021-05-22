@@ -1,4 +1,4 @@
-import DropdownResponseArea, { calcResponseState, ResponseState } from "../../main/js/DropdownResponseArea";
+import DropdownResponseArea, { calcResponseState, ResponseState } from "../../main/js/ResponseAreaDropdown";
 import { render, screen } from '@testing-library/react';
 
 

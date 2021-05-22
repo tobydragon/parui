@@ -1,4 +1,4 @@
-import './DropdownResponseArea.css'
+import './ResponseAreaDropdown.css'
 import {BiCheckCircle, BiXCircle, BiQuestionMark} from "react-icons/bi"
 import { Col, Container, Form, Row } from 'react-bootstrap';
 
@@ -50,7 +50,7 @@ export const calcResponseState = (currentAnswer, correctAnswer) => {
  * @prop {string} questionModel.correctAnswer
  * @prop {list of strings} questionModel.possibleAnswers  
  */
-export const DropdownResponseArea = (props) => {
+export const ResponseAreaDropdown = (props) => {
 
     const onResponseChange = (e) =>{
         props.handleAnswerChange(e.target.value);
@@ -78,4 +78,4 @@ export const DropdownResponseArea = (props) => {
     );
 };
 
-export default DropdownResponseArea;
+export default ResponseAreaDropdown;

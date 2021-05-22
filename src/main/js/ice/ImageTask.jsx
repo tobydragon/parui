@@ -1,5 +1,5 @@
-import ImageArea from "./ImageArea"
-import TaskQuestionsAndResponsesArea from "./ice/TaskQuestionsAndResponsesArea"
+import ImageArea from "../ImageArea"
+import TaskQuestionsAndResponsesArea from "./TaskQuestionsAndResponsesArea"
 
 /**
  * 

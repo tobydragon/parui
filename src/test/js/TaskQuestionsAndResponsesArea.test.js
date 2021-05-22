@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ResponseState } from "../../main/js/DropdownResponseArea";
+import { ResponseState } from "../../main/js/ResponseAreaDropdown";
 import TaskQuestionsAndResponsesArea from "../../main/js/ice/TaskQuestionsAndResponsesArea";
 import SampleImageTaskList from "../resources/sampleImageTasks";
 

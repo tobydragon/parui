@@ -2,7 +2,7 @@ import "./StudentViewSingleQuestion.css"
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
-import { ResponseState } from "./DropdownResponseArea";
+import { ResponseState } from "./ResponseAreaDropdown";
 import QuestionWithImage from "./QuestionWithImage";
 import { Button, Col, Container, Row } from "react-bootstrap";
 

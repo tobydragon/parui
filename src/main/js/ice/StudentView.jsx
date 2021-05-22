@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import ImageTask from "../ImageTask"
+import ImageTask from "./ImageTask"
 import {getFromServer, postToServer} from "../Comm"
 import SampleImageTaskList from "../../../test/resources/SampleImageTasks";
-import { ResponseState } from "../DropdownResponseArea";
+import { ResponseState } from "../ResponseAreaDropdown";
 import { diffNewArray } from "../Util";
 
 /**
