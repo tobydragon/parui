@@ -1,5 +1,5 @@
 import { ResponseState } from "../../main/js/DropdownResponseArea";
-import TaskQuestionsAndResponsesArea from "../../main/js/TaskQuestionsAndResponsesArea";
+import TaskQuestionsAndResponsesArea from "../../main/js/ice/TaskQuestionsAndResponsesArea";
 import SampleImageTaskList from "../resources/SampleImageTasks";
 
 export const TaskQuestionsAndResponsesAreaDemo = () =>{
