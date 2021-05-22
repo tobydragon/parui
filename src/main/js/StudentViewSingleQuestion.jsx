@@ -5,6 +5,7 @@ import SampleImageTaskList from "../../test/resources/SampleImageTasks";
 import { ResponseState } from "./ResponseAreaDropdown";
 import QuestionWithImage from "./QuestionWithImage";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import StudentHeader from "./StudentHeader";
 
 /**
  * @prop {string} userId 
@@ -35,7 +36,7 @@ export const StudentViewSingleQuestion = (props) => {
 
     return(
         <Container className="studentViewSingleQuestion">
-            <p>username: {props.userId} </p>
+            <StudentHeader userId={props.userId} />
             <QuestionWithImage
                 questionModel={questionModel}
                 currentAnswer={currentAnswer}
