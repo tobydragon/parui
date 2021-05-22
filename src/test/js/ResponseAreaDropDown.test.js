@@ -1,4 +1,4 @@
-import DropdownResponseArea, { calcResponseState, ResponseState } from "../../main/js/ResponseAreaDropdown";
+import ResponseAreaDropdown, { calcResponseState, ResponseState } from "../../main/js/ResponseAreaDropdown";
 import { render, screen } from '@testing-library/react';
 
 
@@ -15,7 +15,7 @@ test('calcResponseState', () => {
 const stubFunction = ()=> { };
 
 test('DropdownResponseAreaNoResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer={ResponseState.NOTHING_SELECTED.text} questionModel={{
+    render(<ResponseAreaDropdown handleAnswerChange={stubFunction} currentAnswer={ResponseState.NOTHING_SELECTED.text} questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -24,7 +24,7 @@ test('DropdownResponseAreaNoResponse', () => {
 });
 
 test('DropdownResponseAreaCorrecctResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer="b" questionModel={{
+    render(<ResponseAreaDropdown handleAnswerChange={stubFunction} currentAnswer="b" questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -33,7 +33,7 @@ test('DropdownResponseAreaCorrecctResponse', () => {
 });
 
 test('DropdownResponseAreaIncorrectResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer="d" questionModel={{
+    render(<ResponseAreaDropdown handleAnswerChange={stubFunction} currentAnswer="d" questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
@@ -42,7 +42,7 @@ test('DropdownResponseAreaIncorrectResponse', () => {
 });
 
 test('DropdownResponseAreaDontKnowResponse', () => {
-    render(<DropdownResponseArea handleAnswerChange={stubFunction} currentAnswer={ResponseState.DONT_KNOW.text} questionModel={{
+    render(<ResponseAreaDropdown handleAnswerChange={stubFunction} currentAnswer={ResponseState.DONT_KNOW.text} questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);

@@ -1,6 +1,6 @@
 import "./App.css";
 
-import StudentViewSingleQuestionDemo from './test/js/StudentViewSingleImage.demo'
+import StudentViewSingleQuestionDemo from './test/js/StudentViewSingleQuestion.demo'
 
 function App() {
   return (
