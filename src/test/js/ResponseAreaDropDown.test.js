@@ -19,17 +19,15 @@ test('DropdownResponseAreaNoResponse', () => {
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseState.NOTHING_SELECTED.cssClass);
+    expect(screen.queryByTestId("feedbackIcon")).toBeFalsy();
 });
 
-test('DropdownResponseAreaCorrecctResponse', () => {
+test('DropdownResponseAreaCorrectResponse', () => {
     render(<ResponseAreaDropdown handleAnswerChange={stubFunction} currentAnswer="b" questionModel={{
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseState.CORRECT.cssClass);
+    expect(screen.getByTestId("feedbackIcon-"+ResponseState.CORRECT.id)).toBeInTheDocument();
 });
 
 test('DropdownResponseAreaIncorrectResponse', () => {
@@ -37,8 +35,8 @@ test('DropdownResponseAreaIncorrectResponse', () => {
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseState.INCORRECT.cssClass);
+    expect(screen.getByTestId("feedbackIcon-"+ResponseState.INCORRECT.id)).toBeInTheDocument();
+
 });
 
 test('DropdownResponseAreaDontKnowResponse', () => {
@@ -46,6 +44,5 @@ test('DropdownResponseAreaDontKnowResponse', () => {
         correctAnswer: "b",
         possibleAnswers: ["a", "b", "c", "d"]
     }} />);
-    const iconElement = screen.getByTestId("feedbackIcon");
-    expect(iconElement).toHaveAttribute("class", ResponseState.DONT_KNOW.cssClass);
+    expect(screen.getByTestId("feedbackIcon-"+ResponseState.DONT_KNOW.id)).toBeInTheDocument();
 }); 

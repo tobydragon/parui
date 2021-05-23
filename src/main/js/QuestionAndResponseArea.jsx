@@ -1,6 +1,15 @@
 import ResponseAreaDropdown from "./ResponseAreaDropdown"
 
 
+export const hasFollowupQuestions = (questionModel) => {
+    if (questionModel.hasOwnProperty("followupQuestions")){
+        return questionModel.followupQuestions.length > 0;
+    }
+    else {
+        return false;
+    }
+}
+
 /**
  * @prop {function} handleAnswerChange: function called when a response is selected, takes new string response as a param 
  * @prop {string} questionModel.questionText
@@ -16,15 +25,6 @@ export const QuestionAndResponseArea = (props) => {
         padding: '5px',
         height: '100%',
         margin: '5px'
-    }
-
-    const hasFollowupQuestions = (questionModel) => {
-        if (questionModel.hasOwnProperty("followupQuestions")){
-            return questionModel.followupQuestions.length > 0;
-        }
-        else {
-            return false;
-        }
     }
 
     return (

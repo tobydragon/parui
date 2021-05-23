@@ -62,7 +62,7 @@ export const ResponseAreaDropdown = (props) => {
             <Row>
                 <Col xs={2}>
                     {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
-                    {responseState.hasIcon && <responseState.iconComponent size={42} data-testid="feedbackIcon"/>}
+                    {responseState.hasIcon && <responseState.iconComponent size={42} data-testid={"feedbackIcon-"+responseState.id}/>}
                 </Col>
                 <Col>
                     <Form.Control as="select" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.currentAnswer}>

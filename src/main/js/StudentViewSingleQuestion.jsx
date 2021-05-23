@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
+import {hasFollowupQuestions} from "../../main/js/QuestionAndResponseArea"
 import { ResponseState } from "./ResponseAreaDropdown";
 import QuestionWithImage from "./QuestionWithImage";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import StudentHeader from "./StudentHeader";
+
+export const buildAnswerModel = (questionModel) => {
+    return { 
+        currentAnswer: ResponseState.NOTHING_SELECTED.text,
+        followupAnswers: hasFollowupQuestions(questionModel) ? questionModel.followupQuestions.map((followupModel)=> buildAnswerModel(followupModel)) : []
+    }
+}
 
 /**
  * @prop {string} userId 
