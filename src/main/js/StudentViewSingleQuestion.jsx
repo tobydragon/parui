@@ -1,4 +1,3 @@
-import "./StudentViewSingleQuestion.css"
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
@@ -34,8 +33,16 @@ export const StudentViewSingleQuestion = (props) => {
         postToServer(props.apiUrl, "/addResponse", responseJson);
     };
 
+    const containerStyle = {
+        backgroundColor: 'white',
+        borderRadius: '5px',
+        marginTop: '5px',
+        paddingTop: "5px"
+    
+    }
+
     return(
-        <Container className="studentViewSingleQuestion">
+        <Container style={containerStyle}>
             <StudentHeader userId={props.userId} />
             <QuestionWithImage
                 questionModel={questionModel}
@@ -46,8 +53,8 @@ export const StudentViewSingleQuestion = (props) => {
                 <Row>
                     <Col sm={7}>
                     </Col>
-                    <Col>
-                        <Button variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
+                    <Col  style={{textAlign: 'center'}}>
+                        <Button style={{margin: '5px'}} variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
                     </Col>
                 </Row>
             </Container>
