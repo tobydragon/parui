@@ -7,7 +7,7 @@ export const ImageArea = (props) => {
     };
 
     return (
-        < div style={{border: "solid", padding: "5px",  borderRadius: "5px", borderWidth: "thin"}}>
+        < div style={{border: "solid", padding: "5px",  borderRadius: "5px", borderWidth: "thin", margin: '5px'}}>
             <img style={imageStyle} src={props.imageUrl} alt={props.altText} />
             <p>{props.questionId}</p>
         </div>

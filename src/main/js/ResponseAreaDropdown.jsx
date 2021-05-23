@@ -4,19 +4,22 @@ import { Col, Container, Form, Row } from 'react-bootstrap';
 export const ResponseState = {
     CORRECT: {
         id: "CORRECT",
+        hasIcon: true,
         iconComponent: BiCheckCircle
     },
     INCORRECT: {
         id:"INCORRECT",
+        hasIcon: true,
         iconComponent: BiXCircle
     },
     NOTHING_SELECTED: {
         id: "NOTHING_SELECTED",
-        iconComponent: BiQuestionMark,
+        hasIcon: false,
         text: "---Select Answer---"
     },
     DONT_KNOW: {
         id: "DONT_KNOW",
+        hasIcon: true,
         iconComponent: BiQuestionMark,
         text: "... I don't know"
     }
@@ -59,7 +62,7 @@ export const ResponseAreaDropdown = (props) => {
             <Row>
                 <Col xs={2}>
                     {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
-                    <responseState.iconComponent size={42} data-testid="feedbackIcon"/>
+                    {responseState.hasIcon && <responseState.iconComponent size={42} data-testid="feedbackIcon"/>}
                 </Col>
                 <Col>
                     <Form.Control as="select" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.currentAnswer}>

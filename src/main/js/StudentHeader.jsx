@@ -1,14 +1,6 @@
 import { Form, Navbar, Button } from "react-bootstrap";
 
 export const StudentHeader = (props) => {
-    const brandStyle={
-        width: '150px',
-        height: '60px',
-        border: '1px solid black',
-        borderRadius: '5px'   
-    };
-    
-
     return (
         <Navbar  style={{border: "solid", borderRadius: "5px", marginBottom: "10px", marginTop: "10px", borderWidth: "thin"}}>
             <Navbar.Brand style={{border: "solid", borderRadius: "5px", borderWidth: "thin"}}>
