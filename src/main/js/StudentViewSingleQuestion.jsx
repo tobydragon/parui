@@ -27,9 +27,9 @@ export const StudentViewSingleQuestion = (props) => {
 
     useEffect(getCurrentQuestion, [props.apiUrl, props.userId]);
 
-    const handleAnswerSelected = (newAnswer) => {
+    const handleAnswerSelected = (questionId, newAnswer) => {
         setCurrentAnswer(newAnswer);
-        const responseJson = {studentId: props.userId, questionId: questionModel.id, responseText: newAnswer};
+        const responseJson = {studentId: props.userId, questionId: questionId, responseText: newAnswer};
         postToServer(props.apiUrl, "/addResponse", responseJson);
     };
 

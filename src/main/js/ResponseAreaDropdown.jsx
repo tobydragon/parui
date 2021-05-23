@@ -51,7 +51,7 @@ export const calcResponseState = (currentAnswer, correctAnswer) => {
 export const ResponseAreaDropdown = (props) => {
 
     const onResponseChange = (e) =>{
-        props.handleAnswerChange(e.target.value);
+        props.handleAnswerChange(props.questionModel.id, e.target.value);
     }
 
     const dropdownChoices = props.questionModel.possibleAnswers.map(possAnswerStr => (<option key={possAnswerStr}>{possAnswerStr}</option>));
