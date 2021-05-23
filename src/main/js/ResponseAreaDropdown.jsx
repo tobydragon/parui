@@ -1,27 +1,22 @@
-import './ResponseAreaDropdown.css'
 import {BiCheckCircle, BiXCircle, BiQuestionMark} from "react-icons/bi"
 import { Col, Container, Form, Row } from 'react-bootstrap';
 
 export const ResponseState = {
     CORRECT: {
         id: "CORRECT",
-        cssClass: "correctFeedback",
         iconComponent: BiCheckCircle
     },
     INCORRECT: {
         id:"INCORRECT",
-        cssClass: "incorrectFeedback",
         iconComponent: BiXCircle
     },
     NOTHING_SELECTED: {
         id: "NOTHING_SELECTED",
-        cssClass: "noFeedback",
         iconComponent: BiQuestionMark,
         text: "---Select Answer---"
     },
     DONT_KNOW: {
         id: "DONT_KNOW",
-        cssClass: "noFeedback",
         iconComponent: BiQuestionMark,
         text: "... I don't know"
     }
@@ -64,7 +59,7 @@ export const ResponseAreaDropdown = (props) => {
             <Row>
                 <Col xs={2}>
                     {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
-                    <responseState.iconComponent size={42} className={responseState.cssClass} data-testid="feedbackIcon"/>
+                    <responseState.iconComponent size={42} data-testid="feedbackIcon"/>
                 </Col>
                 <Col>
                     <Form.Control as="select" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.currentAnswer}>

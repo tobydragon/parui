@@ -11,10 +11,11 @@ import ResponseAreaDropdown from "./ResponseAreaDropdown"
 export const QuestionAndResponseArea = (props) => {
 
     const questionStyle = {
-        borderRadius: '5px',
-        borderWidth: 'thin',
+        border: "thin solid black",
+        borderRadius: "5px",
         padding: '5px',
-        height: '100%'
+        height: '100%',
+        margin: '5px'
     }
 
     return (

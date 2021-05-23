@@ -54,7 +54,7 @@ export const StudentViewSingleQuestion = (props) => {
                     <Col sm={7}>
                     </Col>
                     <Col  style={{textAlign: 'center'}}>
-                        <Button style={{margin: '5px'}} variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
+                        <Button style={{margin: '15px'}} variant="outline-dark" size="lg" onClick={getCurrentQuestion}> Next Question </Button>
                     </Col>
                 </Row>
             </Container>

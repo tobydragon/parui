@@ -1,6 +1,4 @@
-import ParLogo from "../resources/PARlogo.JPG";
 import { Form, Navbar, Button } from "react-bootstrap";
-import {GrLogout} from "react-icons/gr"
 
 export const StudentHeader = (props) => {
     const brandStyle={
