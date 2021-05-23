@@ -1,15 +1,5 @@
 import ResponseAreaDropdown from "./ResponseAreaDropdown"
 
-
-export const hasFollowupQuestions = (questionModel) => {
-    if (questionModel.hasOwnProperty("followupQuestions")){
-        return questionModel.followupQuestions.length > 0;
-    }
-    else {
-        return false;
-    }
-}
-
 /**
  * @prop {function} handleAnswerChange: function called when a response is selected, takes new string response as a param 
  * @prop {string} questionModel.questionText
@@ -31,7 +21,6 @@ export const QuestionAndResponseArea = (props) => {
         <div style={questionStyle}>
             <p>{props.questionModel.questionText}</p>
             <ResponseAreaDropdown handleAnswerChange={props.handleAnswerChange} currentAnswer={props.currentAnswer} questionModel={props.questionModel} />
-            {hasFollowupQuestions(props.questionModel) && props.questionModel.followupQuestions.map((followupModel)=> <QuestionAndResponseArea handleAnswerChange={props.handleAnswerChange} questionModel= {followupModel} />)}
         </div>
     );
 }
