@@ -1,4 +1,3 @@
-import "./QuestionAndResponseArea.css"
 import ResponseAreaDropdown from "./ResponseAreaDropdown"
 
 
@@ -10,8 +9,16 @@ import ResponseAreaDropdown from "./ResponseAreaDropdown"
  * @prop {list of strings} questionModel.possibleAnswers  
  */
 export const QuestionAndResponseArea = (props) => {
+
+    const questionStyle = {
+        borderRadius: '5px',
+        borderWidth: 'thin',
+        padding: '5px',
+        height: '100%'
+    }
+
     return (
-        <div className="questionArea">
+        <div style={questionStyle}>
             <p>{props.questionModel.questionText}</p>
             <ResponseAreaDropdown handleAnswerChange={props.handleAnswerChange} currentAnswer={props.currentAnswer} questionModel={props.questionModel} />
         </div>
