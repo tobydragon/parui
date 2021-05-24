@@ -18,8 +18,26 @@ export const buildAnswerModel = (questionModel) => {
     }
 }
 
+export const makeNewUpdatedAnswerModel = (answerModelToCopy, questionIdToChange, newResponse) => {
+    if (answerModelToCopy.questionId===questionIdToChange){
+        return {
+            questionId: answerModelToCopy.questionId,
+            currentAnswer: newResponse,
+            followupAnswers: answerModelToCopy.followupAnswers
+        };
+    }
+    else {
+        return {
+            questionId: answerModelToCopy.questionId,
+            currentAnswer: answerModelToCopy.currentAnswer,
+            followupAnswers: answerModelToCopy.followupAnswers.map(
+                (followupAnswer)=> makeNewUpdatedAnswerModel(followupAnswer, questionIdToChange, newResponse)
+            )
+        }
+    }
+}
+
 export const findAnswerModel = (answerModel, questionId) => {
-    console.log(questionId + answerModel);
     if (answerModel.questionId === questionId){
         return answerModel;
     }
@@ -32,7 +50,6 @@ export const findAnswerModel = (answerModel, questionId) => {
                 }
             }
         }
-        console.log("DIDNOTFIND:" +questionId);
         return null;
     }
 }
