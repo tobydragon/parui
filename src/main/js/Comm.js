@@ -2,7 +2,6 @@
 export function getFromServer(apiUrl, callUrl){
      return fetch(apiUrl+callUrl)
         .then(response => {
-            console.log(response);
             if (response.ok) {
                 return response.json();
             } else {
@@ -19,7 +18,6 @@ export function postToServer(apiUrl, callUrl, bodyObject){
             headers: {"Content-type": "application/json; charset=UTF-8"}
         }) 
        .then(response => {
-           console.log(response);
            if (response.ok) {
                return response.json();
            } else {

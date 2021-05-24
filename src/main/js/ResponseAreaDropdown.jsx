@@ -49,11 +49,13 @@ export const calcResponseState = (currentAnswer, correctAnswer) => {
  * @prop {list of strings} questionModel.possibleAnswers  
  */
 export const ResponseAreaDropdown = (props) => {
+    if (!props.questionModel){
+        throw new Error("questionModel undefined");
+    }
 
     const onResponseChange = (e) =>{
         props.handleAnswerChange(props.questionModel.id, e.target.value);
     }
-
     const dropdownChoices = props.questionModel.possibleAnswers.map(possAnswerStr => (<option key={possAnswerStr}>{possAnswerStr}</option>));
     const responseState = calcResponseState(props.currentAnswer, props.questionModel.correctAnswer);
 
