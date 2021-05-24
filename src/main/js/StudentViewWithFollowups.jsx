@@ -13,14 +13,18 @@ import ImageArea from "./ImageArea";
  */
 export const StudentViewWithFollowups = (props) => {
     //TODO: need to decide how to handle the situation before server is contacted
-    const [questionModel, setQuestionModel] = useState( SampleImageTaskList.imageTasks[0].taskQuestions[0]);
-    const [currentAnswerModel, setCurrentAnswerModel] = useState(buildAnswerModel(SampleImageTaskList.imageTasks[0].taskQuestions[0]));
+    const [model, setModel] = useState({
+        questionModel: SampleImageTaskList.imageTasks[0].taskQuestions[0],
+        currentAnswerModel: buildAnswerModel(SampleImageTaskList.imageTasks[0].taskQuestions[0])
+    });
 
     const getCurrentQuestion = () => {
         getFromServer(props.apiUrl, "/getCurrentQuestion?userId="+props.userId)
         .then((newModelFromServer)=> {
-            setCurrentAnswerModel(buildAnswerModel(newModelFromServer));
-            setQuestionModel(newModelFromServer);
+            setModel({
+                questionModel: newModelFromServer,
+                currentAnswerModel: buildAnswerModel(newModelFromServer)
+            });
             const questionSeenJson = {studentId: props.userId, questionId: newModelFromServer.id};
             postToServer(props.apiUrl, "/addTimeSeen", questionSeenJson);
         });
@@ -48,12 +52,12 @@ export const StudentViewWithFollowups = (props) => {
             <Container>
                 <Row>
                     <Col sm={7}>
-                        <ImageArea questionId={questionModel.id} imageUrl={questionModel.imageUrl} alt="Ultrasound Image" />
+                        <ImageArea questionId={model.questionModel.id} imageUrl={model.questionModel.imageUrl} alt="Ultrasound Image" />
                     </Col>
                     <Col sm >
                         <QuestionAndResponseAreaTree
-                            answerModel={currentAnswerModel} 
-                            questionModel={questionModel}
+                            answerModel={model.currentAnswerModel} 
+                            questionModel={model.questionModel}
                             handleAnswerChange={handleAnswerSelected} 
                         />
                     </Col>
