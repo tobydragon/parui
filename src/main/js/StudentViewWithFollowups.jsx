@@ -4,7 +4,7 @@ import SampleImageTaskList from "../../test/resources/SampleImageTasks";
 import { ResponseState } from "./ResponseAreaDropdown";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import StudentHeader from "./StudentHeader";
-import { buildAnswerModel, QuestionAndResponseAreaTree } from "./QuestionAndResponseAreaTree";
+import { buildAnswerModel, makeNewUpdatedAnswerModel, QuestionAndResponseAreaTree } from "./QuestionAndResponseAreaTree";
 import ImageArea from "./ImageArea";
 
 /**
@@ -33,7 +33,13 @@ export const StudentViewWithFollowups = (props) => {
     useEffect(getCurrentQuestion, [props.apiUrl, props.userId]);
 
     const handleAnswerSelected = (questionId, newAnswer) => {
-        //todo: make a new answerModel object that is an updated version of the previous one, with new answer updated
+        const updatedAnswers = makeNewUpdatedAnswerModel(model.currentAnswerModel, questionId, newAnswer);
+        console.log("setting new answer model");
+        console.log(updatedAnswers);
+        setModel({
+            questionModel: model.questionModel,
+            currentAnswerModel: updatedAnswers 
+        });
         const responseJson = {studentId: props.userId, questionId: questionId, responseText: newAnswer};
         postToServer(props.apiUrl, "/addResponse", responseJson);
     };
