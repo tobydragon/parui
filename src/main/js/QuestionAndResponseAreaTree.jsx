@@ -1,4 +1,4 @@
-import { ResponseState } from "./ResponseAreaDropdown";
+import { ResponseState, calcResponseState} from "./ResponseAreaDropdown";
 import QuestionAndResponseArea from "./QuestionAndResponseArea"
 
 export const hasFollowupQuestions = (questionModel) => {
@@ -8,6 +8,10 @@ export const hasFollowupQuestions = (questionModel) => {
     else {
         return false;
     }
+}
+
+export const isTopQuestionAnsweredCorrectly = (questionModel, currentAnswer)=> {
+    return calcResponseState(questionModel.correctAnswer, currentAnswer)===ResponseState.CORRECT;
 }
 
 export const buildAnswerModel = (questionModel) => {
@@ -65,13 +69,12 @@ export const QuestionAndResponseAreaTree = (props) => {
     if (props.questionModel.id !== props.answerModel.questionId){
         throw new Error("question and response objects not synced: " + props.questionModel.id + " " + props.answerModel.questionId);
     }
-    console.log("--------HERE---------")
-    console.log(props.questionModel);
-    console.log(props.answerModel);
     return (
         <div>
             <QuestionAndResponseArea questionModel={props.questionModel} currentAnswer={props.answerModel.currentAnswer} handleAnswerChange={props.handleAnswerChange} />
-            {hasFollowupQuestions(props.questionModel) && props.questionModel.followupQuestions.map((followupModel)=> 
+            {hasFollowupQuestions(props.questionModel) 
+                && isTopQuestionAnsweredCorrectly(props.questionModel, props.answerModel.currentAnswer)
+                && props.questionModel.followupQuestions.map((followupModel)=> 
                     <QuestionAndResponseAreaTree key={followupModel.id} questionModel={followupModel} answerModel={findAnswerModel(props.answerModel, followupModel.id)}
                         handleAnswerChange={props.handleAnswerChange}/>)}
         </div>

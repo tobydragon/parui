@@ -28,13 +28,13 @@ export const ResponseState = {
 export const calcResponseState = (currentAnswer, correctAnswer) => {
     currentAnswer = currentAnswer.trim();
     correctAnswer = correctAnswer.trim();
-    if (currentAnswer === ResponseState.NOTHING_SELECTED.text){
+    if (currentAnswer.toLowerCase() === ResponseState.NOTHING_SELECTED.text.toLowerCase()){
         return ResponseState.NOTHING_SELECTED;
     }
-    else if (currentAnswer === ResponseState.DONT_KNOW.text){
+    else if (currentAnswer.toLowerCase() === ResponseState.DONT_KNOW.text.toLowerCase()){
         return ResponseState.DONT_KNOW;
     }
-    else if (currentAnswer === correctAnswer){
+    else if (currentAnswer.toLowerCase() === correctAnswer.toLowerCase()){
         return ResponseState.CORRECT;
     }
     else {

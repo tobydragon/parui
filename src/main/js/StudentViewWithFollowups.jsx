@@ -34,8 +34,6 @@ export const StudentViewWithFollowups = (props) => {
 
     const handleAnswerSelected = (questionId, newAnswer) => {
         const updatedAnswers = makeNewUpdatedAnswerModel(model.currentAnswerModel, questionId, newAnswer);
-        console.log("setting new answer model");
-        console.log(updatedAnswers);
         setModel({
             questionModel: model.questionModel,
             currentAnswerModel: updatedAnswers 
