@@ -1,6 +1,5 @@
 import ResponseAreaDropdown from "./ResponseAreaDropdown"
 
-
 /**
  * @prop {function} handleAnswerChange: function called when a response is selected, takes new string response as a param 
  * @prop {string} questionModel.questionText

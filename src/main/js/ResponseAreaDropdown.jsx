@@ -28,13 +28,13 @@ export const ResponseState = {
 export const calcResponseState = (currentAnswer, correctAnswer) => {
     currentAnswer = currentAnswer.trim();
     correctAnswer = correctAnswer.trim();
-    if (currentAnswer === ResponseState.NOTHING_SELECTED.text){
+    if (currentAnswer.toLowerCase() === ResponseState.NOTHING_SELECTED.text.toLowerCase()){
         return ResponseState.NOTHING_SELECTED;
     }
-    else if (currentAnswer === ResponseState.DONT_KNOW.text){
+    else if (currentAnswer.toLowerCase() === ResponseState.DONT_KNOW.text.toLowerCase()){
         return ResponseState.DONT_KNOW;
     }
-    else if (currentAnswer === correctAnswer){
+    else if (currentAnswer.toLowerCase() === correctAnswer.toLowerCase()){
         return ResponseState.CORRECT;
     }
     else {
@@ -49,11 +49,13 @@ export const calcResponseState = (currentAnswer, correctAnswer) => {
  * @prop {list of strings} questionModel.possibleAnswers  
  */
 export const ResponseAreaDropdown = (props) => {
-
-    const onResponseChange = (e) =>{
-        props.handleAnswerChange(e.target.value);
+    if (!props.questionModel){
+        throw new Error("questionModel undefined");
     }
 
+    const onResponseChange = (e) =>{
+        props.handleAnswerChange(props.questionModel.id, e.target.value);
+    }
     const dropdownChoices = props.questionModel.possibleAnswers.map(possAnswerStr => (<option key={possAnswerStr}>{possAnswerStr}</option>));
     const responseState = calcResponseState(props.currentAnswer, props.questionModel.correctAnswer);
 
@@ -62,7 +64,7 @@ export const ResponseAreaDropdown = (props) => {
             <Row>
                 <Col xs={2}>
                     {/* Problem: these icons come as svg, which doesn't have alt text, and so wouldn't be readable by a screen reader */}
-                    {responseState.hasIcon && <responseState.iconComponent size={42} data-testid="feedbackIcon"/>}
+                    {responseState.hasIcon && <responseState.iconComponent size={42} data-testid={"feedbackIcon-"+responseState.id}/>}
                 </Col>
                 <Col>
                     <Form.Control as="select" onChange={onResponseChange} disabled={responseState.id === ResponseState.CORRECT.id} value={props.currentAnswer}>
