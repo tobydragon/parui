@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import ParLogo from "./ParLogo";
-import UsernameForm from "./UserNameForm";
+import UsernameForm from "./UsernameForm";
 
 const containerStyle = {
     backgroundColor: 'white',
