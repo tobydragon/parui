@@ -47,7 +47,6 @@ export const StudentViewWithFollowups = (props) => {
         borderRadius: '5px',
         marginTop: '5px',
         paddingTop: "5px"
-    
     }
 
     return(

@@ -1,4 +1,5 @@
 import "./App.css";
+import LoginArea from "./main/js/LoginArea";
 import StudentViewWithFollowups from "./main/js/StudentViewWithFollowups";
 import QuestionAndResponseAreaTreeDemo from "./test/js/QuestionAndResponseAreaTree.demo";
 
@@ -6,7 +7,7 @@ import StudentViewWithFollowupsDemo from "./test/js/StudentViewWithFollowups.dem
 
 function App() {
   return (
-    <StudentViewWithFollowupsDemo />
+    <LoginArea />
   );
 }
 
