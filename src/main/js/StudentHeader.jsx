@@ -12,7 +12,7 @@ export const StudentHeader = (props) => {
                  <p style={{fontSize: "15px", color: "black", margin: 0, marginRight: '5px'}} > Signed in as: <b>{props.userId}</b></p>
                 </Navbar.Text>
                 <Form inline>
-                    <Button variant="outline-dark" size="lg">
+                    <Button onClick={props.logout} variant="outline-dark" size="lg">
                         Sign Out
                     </Button>
                 </Form>

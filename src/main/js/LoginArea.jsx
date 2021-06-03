@@ -18,7 +18,7 @@ export const LoginArea = (props) => {
                 <Col sm={4} />    
                 <Col sm={4}>
                     <ParLogo />
-                    <UsernameForm />
+                    <UsernameForm loginAction={props.loginAction}/>
                 </Col>
             </Row>
             

@@ -50,7 +50,7 @@ export const StudentView = (props) => {
 
     return(
         <Container style={containerStyle}>
-            <StudentHeader userId={props.userId} />
+            <StudentHeader userId={props.userId} logout={props.logout}/>
             <Container>
                 <Row>
                     <Col sm={7}>
