@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {getFromServer, postToServer} from "./Comm"
 import SampleImageTaskList from "../../test/resources/SampleImageTasks";
-import { ResponseState } from "./ResponseAreaDropdown";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import StudentHeader from "./StudentHeader";
 import { buildAnswerModel, makeNewUpdatedAnswerModel, QuestionAndResponseAreaTree } from "./QuestionAndResponseAreaTree";
@@ -11,7 +10,7 @@ import ImageArea from "./ImageArea";
  * @prop {string} userId 
  * @prop {string} apiUrl 
  */
-export const StudentViewWithFollowups = (props) => {
+export const StudentView = (props) => {
     //TODO: need to decide how to handle the situation before server is contacted
     const [model, setModel] = useState({
         questionModel: SampleImageTaskList.imageTasks[0].taskQuestions[0],
@@ -47,12 +46,11 @@ export const StudentViewWithFollowups = (props) => {
         borderRadius: '5px',
         marginTop: '5px',
         paddingTop: "5px"
-    
     }
 
     return(
         <Container style={containerStyle}>
-            <StudentHeader userId={props.userId} />
+            <StudentHeader userId={props.userId} logout={props.logout}/>
             <Container>
                 <Row>
                     <Col sm={7}>
@@ -81,4 +79,4 @@ export const StudentViewWithFollowups = (props) => {
     );
 };
 
-export default StudentViewWithFollowups;
+export default StudentView;

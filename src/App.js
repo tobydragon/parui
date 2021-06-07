@@ -1,12 +1,14 @@
 import "./App.css";
-import StudentViewWithFollowups from "./main/js/StudentViewWithFollowups";
+import LoginArea from "./main/js/LoginArea";
+import Par from "./main/js/Par";
+import StudentView from "./main/js/StudentView";
 import QuestionAndResponseAreaTreeDemo from "./test/js/QuestionAndResponseAreaTree.demo";
 
-import StudentViewWithFollowupsDemo from "./test/js/StudentViewWithFollowups.demo";
+import StudentViewDemo from "./test/js/StudentView.demo";
 
 function App() {
   return (
-    <StudentViewWithFollowupsDemo />
+    <Par />
   );
 }
 

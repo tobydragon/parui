@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import {getFromServer, postToServer} from "./Comm"
-import SampleImageTaskList from "../../test/resources/SampleImageTasks";
-import { ResponseState } from "./ResponseAreaDropdown";
+import {getFromServer, postToServer} from "../Comm"
+import SampleImageTaskList from "../../../test/resources/SampleImageTasks";
+import { ResponseState } from "../ResponseAreaDropdown";
 import QuestionWithImage from "./QuestionWithImage";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import StudentHeader from "./StudentHeader";
+import StudentHeader from "../StudentHeader";
 
 /**
  * @prop {string} userId 
