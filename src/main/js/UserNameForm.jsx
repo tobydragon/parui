@@ -16,7 +16,7 @@ export const UsernameForm = (props) => {
     return (
         <Form>
             <Form.Group>
-                <Form.Label>{props.texboxLabel}</Form.Label>
+                <Form.Label>{props.textboxLabel}</Form.Label>
                 <Form.Control onChange={onUsernameChange} type="text" placeholder="Enter username" />
             </Form.Group>
             <Button onClick={onSubmit} variant="outline-dark" type="submit">
