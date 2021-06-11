@@ -1,6 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
 import ParLogo from "./ParLogo";
-import UserCreation from "./UserCreation";
 import UsernameForm from "./UserNameForm";
 
 const containerStyle = {
@@ -14,11 +13,7 @@ const containerStyle = {
 
 export const LoginArea = (props) => {
 
-    const cohortList = 
-        getFromServer(props.apiUrl,"/getCohortList")
-        .then((cohortListFromServer)=>{
-            return(cohortListFromServer);
-        });
+    const cohortList = getFromServer(props.apiUrl,"/getCohortList").then((cohortListFromServer)=>{return(cohortListFromServer);});
     
 
     return (

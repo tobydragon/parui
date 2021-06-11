@@ -8,7 +8,6 @@ import {useState} from "react";
 /**
  * @prop {string} apiUrl
  * @prop {list of strings} cohortIds
- * @prop {string} currentCohortId
  * @prop {string} userId
  * @prop {boolean} userIdIsTaken
  */
@@ -21,14 +20,15 @@ export const UserCreation = (props) => {
         setCohortIdSelected(currentCohortId);
     };
 
-    const createUser = () =>{
+    const createUser = (userIdIsTaken) =>{
         //TODO: Error handling for if userId is taken or cohort doesn't exist
-        if(props.userIdIsTaken){
+        if(userIdIsTaken){
             throw new Error("User ID is taken. Choose a new one.");
         }
-        const studentModelJson = {studentId: props.userId, questionHistories:{}};
-        postToServer(props.apiUrl,"/createNewUser",studentModelJson);
-        postToServer(props.apiUrl,"/addNewUserToCohort",props.userId,)
+        //const studentModelJson = {studentId: props.userId, questionHistories:{}};
+        const userJson = {userId: props.userId, cohortId: props.currentCohortId}
+        postToServer(props.apiUrl,"/createNewUser",userJson);
+        postToServer(props.apiUrl,"/addNewUserToCohort",userJson)
     }
 
     const containerStyle = {
