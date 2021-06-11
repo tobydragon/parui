@@ -1,10 +1,12 @@
 import { useState } from "react";
 import LoginArea from "./LoginArea";
 import StudentView from "./StudentView";
+import UserCreation from "./UserCreation";
 
 const ParModes = {
     LOGIN: 1,
-    STUDENT: 2
+    STUDENT: 2,
+    CREATE_USER: 3
 }
 
 const defaultState = {
@@ -27,11 +29,21 @@ export const Par = (props) => {
         setState(defaultState);
     }
 
+    const changeToCreateUser = (cohortList) => {
+        setState({
+            mode:ParModes.CREATE_USER,
+            cohortList: cohortList,
+        });
+    }
+
     if (state.mode === ParModes.LOGIN){
-        return <LoginArea loginAction={logInStudent} />
+        return <LoginArea loginAction={logInStudent} changeToCreateUser={changeToCreateUser} apiUrl="/api2" />
     }
     else if (state.mode === ParModes.STUDENT){
         return <StudentView userId={state.userId} apiUrl="/api2" logout={logout}/>
+    }
+    else if(state.mode === ParModes.CREATE_USER){
+        return <UserCreation apiUrl="/api2" cohortIds={state.cohortList}/>
     }
     else {
         throw new Error("unrecognized ParMode");

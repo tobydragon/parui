@@ -10,7 +10,7 @@ import UserCreationDemo from "./test/js/UserCreation.demo";
 
 function App() {
   return (
-    <UserCreationDemo />
+    <Par />
   );
 }
 
