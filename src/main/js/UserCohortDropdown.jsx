@@ -13,7 +13,7 @@ export const UserCohortDropdown = (props) => {
     }
 
     const onCohortChange = (e) =>{
-        props.handleChange(props.currentCohortId,e.target.value);
+        props.handleChange(e.target.value);
     }
     const dropdownTitle = "---Select Cohort---";
     const dropdownChoices = props.cohortIdOptions.map(possCohortStr => (<option key={possCohortStr}>{possCohortStr}</option>));

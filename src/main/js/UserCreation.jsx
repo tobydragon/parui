@@ -1,35 +1,35 @@
 import UserCohortDropdown from "./UserCohortDropdown";
 import {getFromServer, postToServer} from "./Comm";
 import {useState} from "react";
-
-
-
+import { Button } from "react-bootstrap";
 
 /**
  * @prop {string} apiUrl
  * @prop {list of strings} cohortIds
- * @prop {string} userId
- * @prop {boolean} userIdIsTaken
  */
-
 export const UserCreation = (props) => {
+    //TODO: should be updated when typing into a text box, need to start idToTry out as blank or something, and not allow it to be sent as blank
+    const [idToTry, setIdToTry] = useState("bob");
     const [cohortIdSelected,setCohortIdSelected] = useState("---Select Cohort---");
 
-    const handleCohortChange = (currentCohortId,newCohortId) => {
-        currentCohortId = props.cohortIds.filter(cohortId => cohortId===newCohortId);
-        setCohortIdSelected(currentCohortId);
+    const handleCohortChange = (newCohortValue) => {
+        setCohortIdSelected(newCohortValue);
     };
 
-    const createUser = (userIdIsTaken) =>{
-        //TODO: Error handling for if userId is taken or cohort doesn't exist
-        if(userIdIsTaken){
-            throw new Error("User ID is taken. Choose a new one.");
-        }
-        //const studentModelJson = {studentId: props.userId, questionHistories:{}};
-        const userJson = {userId: props.userId, cohortId: props.currentCohortId}
-        postToServer(props.apiUrl,"/createNewUser",userJson);
-        postToServer(props.apiUrl,"/addNewUserToCohort",userJson)
-    }
+    const createUser = () =>{
+        getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+idToTry).then((response)=> {
+            console.log(response);
+            if (response === true){
+                const userCreationJson = {userId:idToTry, cohortId: cohortIdSelected};
+                //TODO: once the API is there, call to create a new user
+                console.log(userCreationJson);
+                //postToServer(props.apiUrl,"/createNewUser", );
+            }
+            else {
+                console.log("Bad user Id attempted");
+            }
+        });
+    };
 
     const containerStyle = {
         border: "transparent",
@@ -42,7 +42,8 @@ export const UserCreation = (props) => {
 
     return(
         <div style = {containerStyle} text = {cohortIdSelected}>
-        <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIdOptions = {props.cohortIds}/>
+            <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIdOptions = {props.cohortIds}/>
+            <Button onClick={createUser} > Create User </Button>
         </div>
     );
 

@@ -1,7 +1,8 @@
+import UserCreation from "../../main/js/UserCreation";
 
-export const UserCreation = (props) => {
+export const UserCreationDemo = (props) => {
     return(
-        <UserCreation />
+        <UserCreation cohortIds={["random", "inOrder"]} apiUrl="/api2" />
     );
 };
 
