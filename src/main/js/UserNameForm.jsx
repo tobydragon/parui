@@ -20,7 +20,7 @@ export const UsernameForm = (props) => {
                 <Form.Control onChange={onUsernameChange} type="text" placeholder="Enter username" />
             </Form.Group>
             <Button onClick={onSubmit} variant="outline-dark" type="submit">
-                Submit
+                Log In
             </Button>
         </Form>
     );
