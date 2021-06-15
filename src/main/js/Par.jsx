@@ -29,10 +29,10 @@ export const Par = (props) => {
         setState(defaultState);
     }
 
-    const changeToCreateUser = (cohortList) => {
+    const changeToCreateUser = (cohortIds) => {
         setState({
             mode:ParModes.CREATE_USER,
-            cohortList: cohortList,
+            cohortIds: cohortIds,
         });
     }
 
@@ -43,7 +43,7 @@ export const Par = (props) => {
         return <StudentView userId={state.userId} apiUrl={props.apiUrl} logout={logout}/>
     }
     else if(state.mode === ParModes.CREATE_USER){
-        return <UserCreation apiUrl={props.apiUrl} cohortIds={state.cohortList}/>
+        return <UserCreation apiUrl={props.apiUrl} cohortIds={state.cohortIds}/>
     }
     else {
         throw new Error("unrecognized ParMode");
