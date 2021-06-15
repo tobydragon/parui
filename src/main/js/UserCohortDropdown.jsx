@@ -19,17 +19,10 @@ export const UserCohortDropdown = (props) => {
     const dropdownChoices = props.cohortIdOptions.map(possCohortStr => (<option key={possCohortStr}>{possCohortStr}</option>));
 
     return(
-        <Container>
-            <Row>
-                <Col>
-                <Form.Control as="select" onChange={onCohortChange} value={props.currentCohortId} >
-                <option disabled>{dropdownTitle}</option>
-                    {dropdownChoices}
-                </Form.Control>
-                </Col>
-
-            </Row>
-        </Container>
+        <Form.Control as="select" onChange={onCohortChange} value={props.currentCohortId} >
+            <option disabled>{dropdownTitle}</option>
+            {dropdownChoices}
+        </Form.Control>      
     );
 }
 

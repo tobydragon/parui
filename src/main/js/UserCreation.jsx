@@ -2,7 +2,8 @@ import UserCohortDropdown from "./UserCohortDropdown";
 import UserNameForm from "./UserNameForm";
 import {getFromServer, postToServer} from "./Comm";
 import {useState} from "react";
-import { Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import ParLogo from "./ParLogo";
 
 /**
  * @prop {string} apiUrl
@@ -40,29 +41,33 @@ export const UserCreation = (props) => {
         }
     };
 
-    const containerStyle = {
-        border: "transparent",
-        borderRadius: "5px",
-        padding: '5px',
-        height: '100%',
-        margin: '5px'
-    }
-
-
     return(
-        <div style = {containerStyle} text = {cohortIdSelected}>
-            {/*User Id TextBox */}
-            <Form>
-                <Form.Group>
-                    <Form.Label>New Username</Form.Label>
-                    <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
-                </Form.Group>
-            </Form>
-            <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIdOptions = {props.cohortIds}/>
-            <Button onClick={createUser} > Create User </Button>
-        </div>
+        <Container style={containerStyle}>
+            <Row>
+                <Col sm={4} />    
+                <Col sm={4}>
+                    <ParLogo />
+                    <Form>
+                        <Form.Label>New User:</Form.Label>
+                        <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
+                        <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIdOptions = {props.cohortIds}/>
+                    </Form>
+                    <Button onClick={createUser} variant="outline-dark" style={{margin: '5px'}} > Create User </Button>
+                </Col>
+            </Row>
+        </Container>
     );
 
 }
+
+const containerStyle = {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    marginTop: '5px',
+    marginBottom: '5px',
+    paddingBottom: "5px",
+    paddingTop: "5px",
+}
+
 
 export default UserCreation;
