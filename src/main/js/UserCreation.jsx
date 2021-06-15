@@ -50,7 +50,7 @@ export const UserCreation = (props) => {
                     <Form>
                         <Form.Label>New User:</Form.Label>
                         <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
-                        <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIdOptions = {props.cohortIds}/>
+                        <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIds = {props.cohortIds}/>
                     </Form>
                     <Button onClick={createUser} variant="outline-dark" style={{margin: '5px'}} > Create User </Button>
                 </Col>
