@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getFromServer } from "./Comm";
 import LoginArea from "./LoginArea";
 import StudentView from "./StudentView";
 import UserCreation from "./UserCreation";
@@ -13,15 +14,29 @@ const defaultState = {
     mode: ParModes.LOGIN,
     userId: null
 }
+/**
+ * @prop {string} apiUrl
+ */
 
 export const Par = (props) => {
     const [state, setState] = useState(defaultState);
 
     const logInStudent = (newUserId) => {
-        setState({
-            mode: ParModes.STUDENT,
-            userId: newUserId
-        });
+        if(newUserId!==""){
+            getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+newUserId).then((isUserIdAvailable) =>{
+                if(isUserIdAvailable===false){
+                    setState({
+                        mode: ParModes.STUDENT,
+                        userId: newUserId
+                    });
+                }
+                else{
+                    console.log("User does not exist. Must create new user.");
+                }
+            });
+        } else{
+            console.log("invalid user Id submitted");
+        }
     }
 
     const logout = () => {
