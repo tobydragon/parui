@@ -3,6 +3,10 @@ import ParLogo from "./ParLogo";
 import UsernameForm from "./UserNameForm";
 import {getFromServer} from "./Comm";
 
+/**
+ * @prop {style Obj} containerStyle
+ */
+
 export const LoginArea = (props) => {
     
     const getCohortList = () => {getFromServer(props.apiUrl,"/getCohortIds")
@@ -12,7 +16,7 @@ export const LoginArea = (props) => {
     
 
     return (
-        <Container style={containerStyle}>
+        <Container style={{...props.containerStyle, marginBottom: '5px',paddingBottom: "5px",textAlign: "center"}}>
             <Row>
                 <Col sm={4} />    
                 <Col sm={4}>
@@ -24,16 +28,5 @@ export const LoginArea = (props) => {
         </Container>
     );
 };
-
-const containerStyle = {
-    backgroundColor: 'white',
-    borderRadius: '5px',
-    marginTop: '5px',
-    marginBottom: '5px',
-    paddingBottom: "5px",
-    paddingTop: "5px",
-    textAlign: "center"
-}
-
 
 export default LoginArea;

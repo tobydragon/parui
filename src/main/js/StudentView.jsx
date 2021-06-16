@@ -9,6 +9,7 @@ import ImageArea from "./ImageArea";
 /**
  * @prop {string} userId 
  * @prop {string} apiUrl 
+ * @prop {style Obj} containerStyle
  */
 export const StudentView = (props) => {
     //TODO: need to decide how to handle the situation before server is contacted
@@ -41,15 +42,10 @@ export const StudentView = (props) => {
         postToServer(props.apiUrl, "/addResponse", responseJson);
     };
 
-    const containerStyle = {
-        backgroundColor: 'white',
-        borderRadius: '5px',
-        marginTop: '5px',
-        paddingTop: "5px"
-    }
+    
 
     return(
-        <Container style={containerStyle}>
+        <Container style={props.containerStyle}>
             <StudentHeader userId={props.userId} logout={props.logout}/>
             <Container>
                 <Row>

@@ -8,6 +8,7 @@ import ParLogo from "./ParLogo";
 /**
  * @prop {string} apiUrl
  * @prop {list of strings} cohortIds
+ * @prop {style Obj} containerStyle
  */
 export const UserCreation = (props) => {
     //TODO: should be updated when typing into a text box, need to start idToTry out as blank or something, and not allow it to be sent as blank
@@ -42,7 +43,7 @@ export const UserCreation = (props) => {
     };
 
     return(
-        <Container style={containerStyle}>
+        <Container style={{...props.containerStyle, marginBottom:'5px', paddingBottom: "5px"}}>
             <Row>
                 <Col sm={4} />    
                 <Col sm={4}>
@@ -58,15 +59,6 @@ export const UserCreation = (props) => {
         </Container>
     );
 
-}
-
-const containerStyle = {
-    backgroundColor: 'white',
-    borderRadius: '5px',
-    marginTop: '5px',
-    marginBottom: '5px',
-    paddingBottom: "5px",
-    paddingTop: "5px",
 }
 
 
