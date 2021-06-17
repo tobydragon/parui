@@ -22,21 +22,13 @@ export const Par = (props) => {
     const [state, setState] = useState(defaultState);
 
     const logInStudent = (newUserId) => {
-        if(newUserId!==""){
-            getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+newUserId).then((isUserIdAvailable) =>{
-                if(isUserIdAvailable===false){
-                    setState({
-                        mode: ParModes.STUDENT,
-                        userId: newUserId
-                    });
-                }
-                else{
-                    console.log("User does not exist. Must create new user.");
-                }
-            });
-        } else{
-            console.log("invalid user Id submitted");
-        }
+        
+        // setState({
+        //     mode: ParModes.STUDENT,
+        //     userId: newUserId
+        // });
+        console.log(newUserId);
+               
     }
 
     const logout = () => {
