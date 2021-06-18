@@ -10,10 +10,11 @@ export const UsernameForm = (props) => {
         setUsernameText(e.target.value);
     }
     
-    const onSubmit = () => {
+    const onSubmit = (e) => {
         if(userNameText!==""){
-            getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+userNameText).then((isUserIdAvailable) =>{
-                if(isUserIdAvailable===false){
+            e.preventDefault();
+            getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+userNameText).then((response) =>{
+                if(response===false){
                     props.loginAction(userNameText);
                 }
                 else{
@@ -21,6 +22,7 @@ export const UsernameForm = (props) => {
                 }
             });
         } else{
+            e.preventDefault();
             console.log("invalid user Id submitted");
         }
     }

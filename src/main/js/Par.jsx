@@ -23,10 +23,10 @@ export const Par = (props) => {
 
     const logInStudent = (newUserId) => {
         
-        // setState({
-        //     mode: ParModes.STUDENT,
-        //     userId: newUserId
-        // });
+        setState({
+            mode: ParModes.STUDENT,
+            userId: newUserId
+        });
         console.log(newUserId);
                
     }
