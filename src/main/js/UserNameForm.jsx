@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { getFromServer  } from "./Comm";
 
 export const UsernameForm = (props) => {
 
@@ -9,8 +10,21 @@ export const UsernameForm = (props) => {
         setUsernameText(e.target.value);
     }
     
-    const onSubmit = () => {
-        props.loginAction(userNameText);
+    const onSubmit = (e) => {
+        if(userNameText!==""){
+            e.preventDefault();
+            getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+userNameText).then((response) =>{
+                if(response===false){
+                    props.loginAction(userNameText);
+                }
+                else{
+                    console.log("User does not exist. Must create new user.");
+                }
+            });
+        } else{
+            e.preventDefault();
+            console.log("invalid user Id submitted");
+        }
     }
 
     return (

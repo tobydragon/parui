@@ -21,7 +21,7 @@ export const LoginArea = (props) => {
                 <Col sm={4} />    
                 <Col sm={4}>
                     <ParLogo />
-                    <UsernameForm loginAction={props.loginAction}/>
+                    <UsernameForm loginAction={props.loginAction} apiUrl={props.apiUrl}/>
                     <Button onClick={getCohortList} variant="outline-dark" style={{margin: '5px'}}> Create User </Button>
                 </Col>
             </Row>
