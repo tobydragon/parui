@@ -12,7 +12,6 @@ export const UsernameForm = (props) => {
     
     const onSubmit = (e) => {
         if(userNameText!==""){
-            e.preventDefault();
             getFromServer(props.apiUrl, "/isUserIdAvailable?idToCheck="+userNameText).then((response) =>{
                 if(response===false){
                     props.loginAction(userNameText);
@@ -22,7 +21,6 @@ export const UsernameForm = (props) => {
                 }
             });
         } else{
-            e.preventDefault();
             console.log("invalid user Id submitted");
         }
     }
@@ -33,7 +31,7 @@ export const UsernameForm = (props) => {
                 <Form.Label>{props.textboxLabel}</Form.Label>
                 <Form.Control onChange={onUsernameChange} type="text" placeholder="Enter username" />
             </Form.Group>
-            <Button onClick={onSubmit} variant="outline-dark" type="submit">
+            <Button onClick={onSubmit} variant="outline-dark" >
                 Log In
             </Button>
         </Form>
