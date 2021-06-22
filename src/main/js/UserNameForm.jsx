@@ -17,11 +17,13 @@ export const UsernameForm = (props) => {
                     props.loginAction(userNameText);
                 }
                 else{
-                    console.log("User does not exist. Must create new user.");
+                    props.setDisplayAlert(true);
+                    props.setErrorMessage("error: user id does not exist.");
                 }
             });
         } else{
-            console.log("invalid user Id submitted");
+            props.setDisplayAlert(true);
+            props.setErrorMessage("error: no user id entered.");
         }
     }
 

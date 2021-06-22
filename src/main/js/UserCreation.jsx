@@ -10,14 +10,17 @@ import ErrorAlert from "./ErrorAlert";
  * @prop {string} apiUrl
  * @prop {list of strings} cohortIds
  * @prop {style Obj} containerStyle
- * @prop {function} logInStudent
+ * @prop {function} logInStudent 
+ * @prop {function} onErrorFixed
+ * @prop {boolean} displayAlert
+ * @prop {string} errorMessage
+ * @prop {function} setErrorMessage
+ * @prop {function} setDisplayAlert
  */
 export const UserCreation = (props) => {
     //TODO: should be updated when typing into a text box, need to start idToTry out as blank or something, and not allow it to be sent as blank
     const [idToTry, setIdToTry] = useState("");
     const [cohortIdSelected,setCohortIdSelected] = useState("---Select Cohort---");
-    const [displayAlert, setDisplayAlert] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("no message to report");
     const [userCreated, setUserCreated] = useState(false);
     const buttonRef = useRef(null);
 
@@ -27,10 +30,6 @@ export const UserCreation = (props) => {
 
     const onUserIdChange = (e) =>{
         setIdToTry(e.target.value);
-    };
-
-    const onErrorFixed = () =>{
-        setDisplayAlert(false);
     };
 
     const createUser = () =>{
@@ -45,34 +44,37 @@ export const UserCreation = (props) => {
                         postToServer(props.apiUrl,"/addNewUser", userCreationJson);
                         setUserCreated(true);
                     }else{
-                        console.log("error: must select a cohort");
+                        props.setErrorMessage("error: must select a cohort. try again");
+                        props.setDisplayAlert(true);
                     }
                 }
                 else {
-                    setErrorMessage("user id already taken. try again");
-                    setDisplayAlert(true);
+                    props.setErrorMessage("user id already taken. try again");
+                    props.setDisplayAlert(true);
                 }
             });
         } else {
-            setErrorMessage("invalid user id entered: \"\". try again");
-            setDisplayAlert(true);
+            props.setErrorMessage("invalid user id entered: \"\". try again");
+            props.setDisplayAlert(true);
         }
     };
 
     const logInWithCreatedUser = () => {
         if(userCreated){
             props.logInStudent(idToTry);
+        }else{
+            props.setErrorMessage("error: user never created. try again once a user has been made.");
+            props.setDisplayAlert(true);
         }
     }
 
-    if(displayAlert===false){
+    if(props.displayAlert===false){
         return(
             <Container style={{...props.containerStyle, marginBottom:'5px', paddingBottom: "5px"}}>
                 <Row>
                     <Col sm={4} />    
                     <Col sm={4}>
                         <ParLogo />
-                        <ErrorAlert message={errorMessage} showAlert={displayAlert} closeAlert={onErrorFixed}/>
                         <Form>
                             <Form.Label>New User:</Form.Label>
                             <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
@@ -93,7 +95,7 @@ export const UserCreation = (props) => {
         );
     } else{
         return(
-        <ErrorAlert message={errorMessage} showAlert={displayAlert} closeAlert={onErrorFixed}/>
+        <ErrorAlert message={props.errorMessage} showAlert={props.displayAlert} closeAlert={props.onErrorFixed}/>
         );
     }
 
