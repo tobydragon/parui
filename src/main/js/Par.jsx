@@ -16,6 +16,7 @@ const defaultState = {
 }
 /**
  * @prop {string} apiUrl
+ * @prop {style Obj} containerStyle
  */
 
 export const Par = (props) => {
@@ -44,17 +45,24 @@ export const Par = (props) => {
     }
 
     if (state.mode === ParModes.LOGIN){
-        return <LoginArea loginAction={logInStudent} changeToCreateUser={changeToCreateUser} apiUrl={props.apiUrl} />
+        return <LoginArea loginAction={logInStudent} changeToCreateUser={changeToCreateUser} apiUrl={props.apiUrl} containerStyle={containerStyle} />
     }
     else if (state.mode === ParModes.STUDENT){
-        return <StudentView userId={state.userId} apiUrl={props.apiUrl} logout={logout}/>
+        return <StudentView userId={state.userId} apiUrl={props.apiUrl} logout={logout} containerStyle={containerStyle} />
     }
     else if(state.mode === ParModes.CREATE_USER){
-        return <UserCreation apiUrl={props.apiUrl} cohortIds={state.cohortIds}/>
+        return <UserCreation apiUrl={props.apiUrl} cohortIds={state.cohortIds} containerStyle={containerStyle} logInStudent={logInStudent}/>
     }
     else {
         throw new Error("unrecognized ParMode");
     }
 };
+
+const containerStyle = {
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    marginTop: '5px',
+    paddingTop: "5px"
+}
 
 export default Par;
