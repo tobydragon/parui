@@ -3,6 +3,11 @@ import ParLogo from "./ParLogo";
 import UsernameForm from "./UserNameForm";
 import {getFromServer} from "./Comm";
 
+/**
+ * @prop {function} loginAction
+ * @prop {string} apiUrl
+ */
+
 export const LoginArea = (props) => {
     
     const getCohortList = () => {getFromServer(props.apiUrl,"/getCohortIds")

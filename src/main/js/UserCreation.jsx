@@ -4,6 +4,7 @@ import {getFromServer, postToServer} from "./Comm";
 import {useState} from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import ParLogo from "./ParLogo";
+import ErrorAlert from "./ErrorAlert";
 
 /**
  * @prop {string} apiUrl
@@ -13,6 +14,8 @@ export const UserCreation = (props) => {
     //TODO: should be updated when typing into a text box, need to start idToTry out as blank or something, and not allow it to be sent as blank
     const [idToTry, setIdToTry] = useState("");
     const [cohortIdSelected,setCohortIdSelected] = useState("---Select Cohort---");
+    const [displayAlert, setDisplayAlert] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("no message to report");
 
     const handleCohortChange = (newCohortValue) => {
         setCohortIdSelected(newCohortValue);
@@ -20,6 +23,10 @@ export const UserCreation = (props) => {
 
     const onUserIdChange = (e) =>{
         setIdToTry(e.target.value);
+    };
+
+    const onErrorFixed = () =>{
+        setDisplayAlert(false);
     };
 
     const createUser = () =>{
@@ -33,30 +40,38 @@ export const UserCreation = (props) => {
                     postToServer(props.apiUrl,"/addNewUser", userCreationJson);
                 }
                 else {
-                    console.log("Bad user Id attempted");
+                    setErrorMessage("user id already taken. try again");
+                    setDisplayAlert(true);
                 }
             });
         } else {
-            console.log("invalid user Id submitted");
+            setErrorMessage("invalid user id entered: \"\". try again");
+            setDisplayAlert(true);
         }
     };
-
-    return(
-        <Container style={containerStyle}>
-            <Row>
-                <Col sm={4} />    
-                <Col sm={4}>
-                    <ParLogo />
-                    <Form>
-                        <Form.Label>New User:</Form.Label>
-                        <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
-                        <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIds = {props.cohortIds}/>
-                    </Form>
-                    <Button onClick={createUser} variant="outline-dark" style={{margin: '5px'}} > Create User </Button>
-                </Col>
-            </Row>
-        </Container>
-    );
+    if(displayAlert===false){
+        return(
+            <Container style={containerStyle}>
+                <Row>
+                    <Col sm={4} />    
+                    <Col sm={4}>
+                        <ParLogo />
+                        <ErrorAlert message={errorMessage} showAlert={displayAlert} closeAlert={onErrorFixed}/>
+                        <Form>
+                            <Form.Label>New User:</Form.Label>
+                            <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
+                            <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIds = {props.cohortIds}/>
+                        </Form>
+                        <Button onClick={createUser} variant="outline-dark" style={{margin: '5px'}} > Create User </Button>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    } else{
+        return(
+        <ErrorAlert message={errorMessage} showAlert={displayAlert} closeAlert={onErrorFixed}/>
+        );
+    }
 
 }
 
