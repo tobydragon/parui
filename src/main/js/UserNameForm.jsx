@@ -2,6 +2,16 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { getFromServer  } from "./Comm";
 
+/**
+ * 
+ * @prop {function} loginAction
+ * @prop {string} apiUrl
+ * @prop {boolean} displayAlert
+ * @prop {string} errorMessage
+ * @prop {function} setErrorMessage
+ * @prop {function} setDisplayAlert
+ */
+
 export const UsernameForm = (props) => {
 
     const [userNameText, setUsernameText] = useState("");

@@ -8,6 +8,11 @@ import ErrorAlert from "./ErrorAlert";
  * @prop {function} loginAction
  * @prop {string} apiUrl
  * @prop {style Obj} containerStyle
+ * @prop {function} onErrorFixed
+ * @prop {boolean} displayAlert
+ * @prop {string} errorMessage
+ * @prop {function} setErrorMessage
+ * @prop {function} setDisplayAlert
  */
 
 export const LoginArea = (props) => {
