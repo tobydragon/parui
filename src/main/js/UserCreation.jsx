@@ -88,6 +88,8 @@ export const UserCreation = (props) => {
                                 </div>
                             )}
                         </Overlay>
+                        <Form>
+                        </Form>
                         <Button onClick={logInWithCreatedUser} variant="outline-dark" style={{margin: '5px'}} > Log In to Student View</Button>
                     </Col>
                 </Row>
