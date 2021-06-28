@@ -1,4 +1,4 @@
-import { ResponseState } from "../../main/js/DropdownResponseArea";
+import { ResponseState } from "../../main/js/ResponseAreaDropdown";
 import { QuestionAndResponseArea } from "../../main/js/QuestionAndResponseArea";
 
 export const QuestionAndResponseAreaDemo = () =>{
