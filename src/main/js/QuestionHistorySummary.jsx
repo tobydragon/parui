@@ -1,17 +1,10 @@
 import React from "react"
 
-export const QuestionHistorySummary = () => {
+export const QuestionHistorySummary = (props) => {
   //TODO: Assign unique key prop
-  //TODO: Pass questionHist list as a prop
   //TODO: Implement buttons that display information
 
-  const questionsHist = {
-    idsSeen: ["q1", "q2", "q3", "q4", "q5"],
-    respondedTo: ["q1", "q2", "q3"],
-    correctFirstTime: ["q1", "q2"],
-    incorrect: ["q3"],
-    correctAfterIncorrect: ["q4"],
-  }
+  const {questionsHist} = props
 
   let totalPercent =
     100 *

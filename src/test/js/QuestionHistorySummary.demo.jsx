@@ -5,7 +5,7 @@ export const QuestionHistorySummaryDemo = () => {
     <QuestionHistorySummary
       questionsHist={{
         idsSeen: ["q1", "q2", "q3", "q4", "q5"],
-        respondedTo: ["q1", "q2", "q3"],
+        respondedTo: ["q1", "q2", "q3", "q4"],
         correctFirstTime: ["q1", "q2"],
         incorrect: ["q3"],
         correctAfterIncorrect: ["q4"],
