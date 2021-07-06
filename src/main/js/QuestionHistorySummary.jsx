@@ -1,66 +1,77 @@
 import React from "react"
 
-export const QuestionHistorySummary = ({ questionsHist }) => {
+/**
+ * 
+ * @prop {object} questionsHist
+ *  
+ */
+export const QuestionHistorySummary = ({questionsHist}) => {
   //TODO: Assign unique key prop
-
   //TODO: Take student id as prop
   //BUTTON to talk with server
   // card - automatic update information
-  
-  let totalPercent =
-    100 *
-    Math.abs(questionsHist.questionIdsRespondedTo.length / questionsHist.questionIdsSeen.length)
-  let correctPercent =
-    100 *
-    Math.abs(
-      questionsHist.questionIdsCorrectFirstTime.length / questionsHist.questionIdsSeen.length
-    )
-  let incorrectPercent =
-    100 *
-    Math.abs(questionsHist.questionIdsIncorrect.length / questionsHist.questionIdsSeen.length)
-  let correctAfterIncorrectPercent =
-    100 *
-    Math.abs(
-      questionsHist.questionIdsCorrectAfterIncorrect.length / questionsHist.questionIdsSeen.length
-    )
+
+  const historySummaryStyle = {
+    border: "thin solid black",
+    borderRadius: "5px",
+    padding: '5px',
+    height: '100%',
+    margin: '5px',
+    width: 'fit-content'
+}
+
+  const calculatePercent = (props) => {
+    let percent = 100 * Math.abs(props.length / questionsHist.questionIdsSeen.length)
+    return percent
+  }
+
+if (questionsHist.questionIdsSeen.length == 0){
+    return (
+      <div>
+        <p>No questions answered yet!</p>
+      </div>
+    )    
+}
 
   return (
-    <div>
-      <h1>
+    <div style={historySummaryStyle}>
+      <p>
         You answered {questionsHist.questionIdsRespondedTo.length} /{" "}
-        {questionsHist.questionIdsSeen.length} questions total ({totalPercent} %)
-      </h1>
-      <h1>
+        {questionsHist.questionIdsSeen.length} questions total ({calculatePercent(questionsHist.questionIdsRespondedTo)} %)
+      </p>
+      <p>
         You answered {questionsHist.questionIdsCorrectFirstTime.length} questions correct
-        first time ({correctPercent} %)
+        first time ({calculatePercent(questionsHist.questionIdsCorrectFirstTime)} %)
         <ul>
           {questionsHist.questionIdsCorrectFirstTime.map((correct) => (
             <li key={correct}>{correct}</li>
           ))}
         </ul>
-      </h1>
+      </p>
 
-      <h1>
+      <p>
         You answered {questionsHist.questionIdsIncorrect.length} questions incorrect (
-        {incorrectPercent} %)
+          {calculatePercent(questionsHist.questionIdsIncorrect)} %)
         <ul>
           {questionsHist.questionIdsIncorrect.map((incorrect) => (
             <li key={incorrect}>{incorrect}</li>
           ))}
         </ul>
-      </h1>
+      </p>
 
-      <h1>
+      <p>
         You answered {questionsHist.questionIdsCorrectAfterIncorrect.length} questions
-        correct after incorrect ({correctAfterIncorrectPercent} %)
+        correct after incorrect ({calculatePercent(questionsHist.questionIdsCorrectAfterIncorrect)} %)
         <ul>
           {questionsHist.questionIdsCorrectAfterIncorrect.map((correctAfterIncorrect) => (
             <li key={correctAfterIncorrect}>{correctAfterIncorrect}</li>
           ))}
         </ul>
-      </h1>
+      </p>
     </div>
   )
+
+
 }
 
 export default QuestionHistorySummary

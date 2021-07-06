@@ -13,10 +13,8 @@ import UserCreationDemo from "./test/js/UserCreation.demo";
 
 function App() {
   return (
-    //<Par apiUrl = "/api2"/>
-    //<QuestionHistorySummary />
-    <QuestionHistorySummaryDemo />
-
+    <Par apiUrl = "/api2"/>
+    //<QuestionHistorySummaryDemo />
   );
 }
 
