@@ -6,7 +6,6 @@ import StudentHeader from "./StudentHeader";
 import { buildAnswerModel, makeNewUpdatedAnswerModel, QuestionAndResponseAreaTree } from "./QuestionAndResponseAreaTree";
 import ImageArea from "./ImageArea";
 import QuestionHistorySummary from "./QuestionHistorySummary";
-import { QuestionHistorySummaryDemo } from "../../test/js/QuestionHistorySummary.demo";
 
 /**
  * @prop {string} userId 
@@ -41,7 +40,7 @@ export const StudentView = (props) => {
         });
     };
 
-    // TODO: Retrieve the object from PAR
+    //TODO: Update QHS once answer has been selected
     const getQuestionHistorySummary = () => {
         getFromServer(props.apiUrl, "/getQuestionHistorySummary?userId="+props.userId)
         .then((newQuestionHistory) => {
