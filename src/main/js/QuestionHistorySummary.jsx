@@ -21,11 +21,11 @@ export const QuestionHistorySummary = ({questionsHist}) => {
 }
 
   const calculatePercent = (props) => {
-    let percent = 100 * Math.abs(props.length / questionsHist.questionIdsSeen.length)
+    let percent = 100 * Math.abs(props.length / questionsHist.questionIdsSeen.length).toFixed(2)
     return percent
   }
 
-if (questionsHist.questionIdsSeen.length == 0){
+if (questionsHist.questionIdsSeen.length === 0){
     return (
       <div>
         <p>No questions answered yet!</p>
@@ -42,32 +42,32 @@ if (questionsHist.questionIdsSeen.length == 0){
       <p>
         You answered {questionsHist.questionIdsCorrectFirstTime.length} questions correct
         first time ({calculatePercent(questionsHist.questionIdsCorrectFirstTime)} %)
-        <ul>
+      </p>
+      <ul>
           {questionsHist.questionIdsCorrectFirstTime.map((correct) => (
             <li key={correct}>{correct}</li>
           ))}
         </ul>
-      </p>
 
       <p>
         You answered {questionsHist.questionIdsIncorrect.length} questions incorrect (
           {calculatePercent(questionsHist.questionIdsIncorrect)} %)
-        <ul>
+      </p>
+      <ul>
           {questionsHist.questionIdsIncorrect.map((incorrect) => (
             <li key={incorrect}>{incorrect}</li>
           ))}
         </ul>
-      </p>
 
       <p>
         You answered {questionsHist.questionIdsCorrectAfterIncorrect.length} questions
         correct after incorrect ({calculatePercent(questionsHist.questionIdsCorrectAfterIncorrect)} %)
-        <ul>
+      </p>
+      <ul>
           {questionsHist.questionIdsCorrectAfterIncorrect.map((correctAfterIncorrect) => (
             <li key={correctAfterIncorrect}>{correctAfterIncorrect}</li>
           ))}
         </ul>
-      </p>
     </div>
   )
 

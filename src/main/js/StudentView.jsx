@@ -30,13 +30,13 @@ export const StudentView = (props) => {
     const getCurrentQuestion = () => {
         getFromServer(props.apiUrl, "/getCurrentQuestion?userId="+props.userId)
         .then((newModelFromServer)=> {
-            console.log(newModelFromServer)
             setModel({
                 questionModel: newModelFromServer,
                 currentAnswerModel: buildAnswerModel(newModelFromServer)
             });
             const questionSeenJson = {studentId: props.userId, questionId: newModelFromServer.id};
             postToServer(props.apiUrl, "/addTimeSeen", questionSeenJson);
+            getQuestionHistorySummary();
         });
     };
 
@@ -51,7 +51,9 @@ export const StudentView = (props) => {
 
     useEffect(getCurrentQuestion, [props.apiUrl, props.userId]);
     useEffect(getQuestionHistorySummary, [props.apiUrl, props.userId]);
+    useState(getQuestionHistorySummary, [props.apiUrl, props.userId]);
 
+    
     const handleAnswerSelected = (questionId, newAnswer) => {
         const updatedAnswers = makeNewUpdatedAnswerModel(model.currentAnswerModel, questionId, newAnswer);
         setModel({
@@ -61,6 +63,7 @@ export const StudentView = (props) => {
         const responseJson = {studentId: props.userId, questionId: questionId, responseText: newAnswer};
         postToServer(props.apiUrl, "/addResponse", responseJson);
         getQuestionHistorySummary();
+
     };
 
     
@@ -85,7 +88,6 @@ export const StudentView = (props) => {
 
             <Container>
                 <Col sm>
-                    {/* <Button onClick={getQuestionHistorySummary}>View Summary</Button> */}
                     <QuestionHistorySummary 
                         questionsHist = {historySummary}
                     />
