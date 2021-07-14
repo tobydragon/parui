@@ -25,7 +25,7 @@ export const QuestionHistorySummary = ({questionsHist}) => {
     return percent
   }
 
-if (questionsHist.questionIdsSeen.length === 0){
+if (questionsHist.questionIdsRespondedTo.length === 0){
     return (
       <div>
         <p>No questions answered yet!</p>

@@ -41,6 +41,7 @@ export const StudentView = (props) => {
     };
 
     //TODO: Update QHS once answer has been selected
+    //TODO: check for client true/false
     const getQuestionHistorySummary = () => {
         getFromServer(props.apiUrl, "/getQuestionHistorySummary?userId="+props.userId)
         .then((newQuestionHistory) => {
@@ -50,9 +51,6 @@ export const StudentView = (props) => {
     }
 
     useEffect(getCurrentQuestion, [props.apiUrl, props.userId]);
-    useEffect(getQuestionHistorySummary, [props.apiUrl, props.userId]);
-    useState(getQuestionHistorySummary, [props.apiUrl, props.userId]);
-
     
     const handleAnswerSelected = (questionId, newAnswer) => {
         const updatedAnswers = makeNewUpdatedAnswerModel(model.currentAnswerModel, questionId, newAnswer);
@@ -61,8 +59,7 @@ export const StudentView = (props) => {
             currentAnswerModel: updatedAnswers 
         });
         const responseJson = {studentId: props.userId, questionId: questionId, responseText: newAnswer};
-        postToServer(props.apiUrl, "/addResponse", responseJson);
-        getQuestionHistorySummary();
+        postToServer(props.apiUrl, "/addResponse", responseJson).then(getQuestionHistorySummary);
 
     };
 
