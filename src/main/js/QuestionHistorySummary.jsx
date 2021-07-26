@@ -1,4 +1,5 @@
 import React from "react"
+import { useState } from "react"
 
 /**
  * 
@@ -25,21 +26,18 @@ export const QuestionHistorySummary = ({questionsHist}) => {
     return percent
   }
 
-if (questionsHist.questionIdsRespondedTo.length === 0){
-    return (
-      <div>
-        <p>No questions answered yet!</p>
-      </div>
-    )    
-}
+  const [showCorrect, setShowCorrect] = useState(false);
+  const [showIncorrect, setShowIncorrect] = useState(false);
+  const [showCorrectAfterIncorrect, setShowCorrectAfterIncorrect] = useState(false);
 
-  return (
-    <div style={historySummaryStyle}>
-      <p>
-        You answered {questionsHist.questionIdsRespondedTo.length} /{" "}
-        {questionsHist.questionIdsSeen.length} questions total ({calculatePercent(questionsHist.questionIdsRespondedTo)} %)
-      </p>
-      <p>
+  const handleClick = () => setShowCorrect(!showCorrect)
+  const handleClick1 = () => setShowIncorrect(!showIncorrect)
+  const handleClick2 = () => setShowCorrectAfterIncorrect(!showCorrectAfterIncorrect)
+
+  const CorrectFirstTime = () => {
+    return(
+      <div>
+         <p>
         You answered {questionsHist.questionIdsCorrectFirstTime.length} questions correct
         first time ({calculatePercent(questionsHist.questionIdsCorrectFirstTime)} %)
       </p>
@@ -48,8 +46,14 @@ if (questionsHist.questionIdsRespondedTo.length === 0){
             <li key={correct}>{correct}</li>
           ))}
         </ul>
+      </div>
+    )
+  }
 
-      <p>
+  const Incorrect = () => {
+    return(
+      <div>
+        <p>
         You answered {questionsHist.questionIdsIncorrect.length} questions incorrect (
           {calculatePercent(questionsHist.questionIdsIncorrect)} %)
       </p>
@@ -58,8 +62,14 @@ if (questionsHist.questionIdsRespondedTo.length === 0){
             <li key={incorrect}>{incorrect}</li>
           ))}
         </ul>
+      </div>
+    )
+  }
 
-      <p>
+  const CorrectAfterIncorrect = () => {
+    return(
+      <div>
+        <p>
         You answered {questionsHist.questionIdsCorrectAfterIncorrect.length} questions
         correct after incorrect ({calculatePercent(questionsHist.questionIdsCorrectAfterIncorrect)} %)
       </p>
@@ -68,6 +78,33 @@ if (questionsHist.questionIdsRespondedTo.length === 0){
             <li key={correctAfterIncorrect}>{correctAfterIncorrect}</li>
           ))}
         </ul>
+
+      </div>
+    )
+  }
+
+  if (questionsHist.questionIdsRespondedTo.length === 0){
+      return (
+        <div>
+          <p>No questions answered yet!</p>
+        </div>
+      )    
+  }
+
+  return (
+    <div style={historySummaryStyle}>
+      <p>
+        You answered {questionsHist.questionIdsRespondedTo.length} /{" "}
+        {questionsHist.questionIdsSeen.length} questions total
+      </p>
+      <button onClick={handleClick}>View Correct First Time</button>
+      {showCorrect ? <CorrectFirstTime /> : null}
+
+      <button onClick={handleClick1}>View Incorrect</button>
+      {showIncorrect ? <Incorrect /> : null}
+
+      <button onClick={handleClick2}>View Correct After Incorrect</button>
+      {showCorrectAfterIncorrect ? <CorrectAfterIncorrect /> : null}
     </div>
   )
 
