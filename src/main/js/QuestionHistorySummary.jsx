@@ -30,10 +30,6 @@ export const QuestionHistorySummary = ({questionsHist}) => {
   const [showIncorrect, setShowIncorrect] = useState(false);
   const [showCorrectAfterIncorrect, setShowCorrectAfterIncorrect] = useState(false);
 
-  const handleClick = () => setShowCorrect(!showCorrect)
-  const handleClick1 = () => setShowIncorrect(!showIncorrect)
-  const handleClick2 = () => setShowCorrectAfterIncorrect(!showCorrectAfterIncorrect)
-
   const CorrectFirstTime = () => {
     return(
       <div>
@@ -89,24 +85,24 @@ export const QuestionHistorySummary = ({questionsHist}) => {
           <p>No questions answered yet!</p>
         </div>
       )    
+  } else {
+    return (
+      <div style={historySummaryStyle}>
+        <p>
+          You answered {questionsHist.questionIdsRespondedTo.length} /{" "}
+          {questionsHist.questionIdsSeen.length} questions total
+        </p>
+        <button onClick={() => setShowCorrect(!showCorrect)}>View Correct First Time</button>
+        {showCorrect ? <CorrectFirstTime /> : null}
+  
+        <button onClick={() => setShowIncorrect(!showIncorrect)}>View Incorrect</button>
+        {showIncorrect ? <Incorrect /> : null}
+  
+        <button onClick={() => setShowCorrectAfterIncorrect(!showCorrectAfterIncorrect)}>View Correct After Incorrect</button>
+        {showCorrectAfterIncorrect ? <CorrectAfterIncorrect /> : null}
+      </div>
+    )
   }
-
-  return (
-    <div style={historySummaryStyle}>
-      <p>
-        You answered {questionsHist.questionIdsRespondedTo.length} /{" "}
-        {questionsHist.questionIdsSeen.length} questions total
-      </p>
-      <button onClick={handleClick}>View Correct First Time</button>
-      {showCorrect ? <CorrectFirstTime /> : null}
-
-      <button onClick={handleClick1}>View Incorrect</button>
-      {showIncorrect ? <Incorrect /> : null}
-
-      <button onClick={handleClick2}>View Correct After Incorrect</button>
-      {showCorrectAfterIncorrect ? <CorrectAfterIncorrect /> : null}
-    </div>
-  )
 
 
 }
