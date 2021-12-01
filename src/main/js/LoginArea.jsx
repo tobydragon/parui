@@ -31,7 +31,7 @@ export const LoginArea = (props) => {
                         <ParLogo />
                         <UsernameForm loginAction={props.loginAction} apiUrl={props.apiUrl} displayAlert={props.displayAlert}
                             errorMessage={props.errorMessage} setErrorMessage={props.setErrorMessage} setDisplayAlert={props.setDisplayAlert}/>
-                        <Button onClick={getCohortList} variant="outline-dark" style={{margin: '10px'}} disabled> Create User </Button>
+                        <Button onClick={getCohortList} variant="outline-light" style={{margin: '10px'}} > Create User </Button>
                     </Col>
                 </Row>
             </Container>
