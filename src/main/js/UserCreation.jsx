@@ -80,7 +80,7 @@ export const UserCreation = (props) => {
                             <Form.Control onChange={onUserIdChange} type="text" placeholder="Enter new username" />
                             <UserCohortDropdown handleChange = {handleCohortChange} currentCohortId={cohortIdSelected} cohortIds = {props.cohortIds}/>
                         </Form>
-                        <Button ref={buttonRef} onClick={createUser} variant="outline-dark" style={{margin: '5px'}} > Create User</Button>
+                        <Button ref={buttonRef} onClick={createUser} variant="outline-dark" style={{margin: '10px'}} > Create User</Button>
                         <Overlay target={buttonRef.current} show={userCreated} placement="right" transition={false}>
                             {({placement, arrowProps, show: userCreated, popper,...props}) => (
                                 <div {...props} style={{...props.style,paddingLeft:'7px'}}>
